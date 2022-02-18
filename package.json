@@ -27,6 +27,8 @@
     "mongodb": "^4.4.0",
     "mongodb-memory-server": "^8.3.0",
     "mongoose": "^6.2.2",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "order-id": "^2.1.2",
+    "uuid": "^8.3.2"
   }
 }

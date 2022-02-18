@@ -4,7 +4,7 @@ mongoose.set("debug", true);
 const entrySchema = new mongoose.Schema({
   surname: { type: String },
   lastname: { type: String },
-  entryTimer: { type: Date },
+  entryTime: { type: Date },
 });
 
 module.exports = mongoose.model("entries", entrySchema);
