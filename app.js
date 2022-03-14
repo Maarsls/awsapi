@@ -13,6 +13,8 @@ app.use("/user", require("./routes/user"));
 app.use("/orders", require("./routes/orders"));
 app.use("/blog", require("./routes/blog"));
 app.use("/seats", require("./routes/seats"));
+app.use("/pdf", require("./routes/pdf"));
+app.use("/qr", require("./routes/qr"));
 app.use("/", require("./routes/main"));
 
 module.exports = app;
