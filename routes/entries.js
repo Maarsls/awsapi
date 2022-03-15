@@ -1,7 +1,7 @@
 var router = require("express").Router();
 const Entries = require("../model/entries");
 
-router.get("/", (req, res) => {
+router.get("/", auth, (req, res) => {
   Entries.find()
     .exec()
     .then(function (users) {
