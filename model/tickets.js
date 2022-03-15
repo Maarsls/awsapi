@@ -7,6 +7,7 @@ const ticketsSchema = new mongoose.Schema({
   status: { type: String },
   type: { type: String },
   costumer: { type: String },
+  issuer: { type: String },
 });
 
 module.exports = mongoose.model("tickets", ticketsSchema);

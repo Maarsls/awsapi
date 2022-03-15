@@ -1,5 +1,6 @@
 var router = require("express").Router();
 const User = require("../model/user");
+const jwt = require("jsonwebtoken");
 // const token = jwt.sign(
 //         { user_id: user._id, email },
 //         process.env.TOKEN_KEY,
@@ -28,7 +29,9 @@ router.get("/:nuuid", (req, res) => {
 
         // save user token
         user.token = token;
-        res.send(user);
+        const send = { user: user, token: token };
+        res.send(send);
+        console.log(send);
       } else res.send({ success: false });
     });
 });

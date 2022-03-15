@@ -1,6 +1,8 @@
 var router = require("express").Router();
 const Tickets = require("../model/tickets");
 
+const auth = require("../middleware/auth");
+
 router.get("/:uuid", (req, res) => {
   Tickets.findOne({ uuid: req.params.uuid })
     .exec()
@@ -16,7 +18,7 @@ router.post("/", async (req, res) => {
   res.send(entriesRes);
 });
 
-router.get("/byUser/:nuuid", async (req, res) => {
+router.get("/byUser/:nuuid", auth, async (req, res) => {
   Tickets.find({ customer: req.params.nuuid })
     .exec()
     .then(function (tickets) {
