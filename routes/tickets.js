@@ -12,7 +12,7 @@ router.get("/:uuid", (req, res) => {
     });
 });
 
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   const entriesRes = await Tickets.create(req.body.ticket);
 
   res.send(entriesRes);

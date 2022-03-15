@@ -5,6 +5,8 @@ const orderid = require("order-id")("key");
 const Orders = require("../model/orders");
 const Tickets = require("../model/tickets");
 
+const auth = require("../middleware/auth");
+
 router.get("/", (req, res) => {
   Orders.find({})
     .exec()

@@ -7,9 +7,6 @@ const port = process.env.PORT || API_PORT;
 
 const auth = require("./middleware/auth");
 
-
-
-
 // server listening
 server.listen(port, () => {
   console.log(`Server running on port ${port}`);

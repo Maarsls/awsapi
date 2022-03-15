@@ -1,5 +1,6 @@
 var router = require("express").Router();
 const Blog = require("../model/blog");
+const auth = require("../middleware/auth");
 
 router.get("/", (req, res) => {
   Blog.find()
@@ -10,7 +11,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   const entryRes = await Blog.create(req.body.entry);
 
   res.send(entryRes);

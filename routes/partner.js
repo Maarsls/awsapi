@@ -1,5 +1,6 @@
 var router = require("express").Router();
 const Partner = require("../model/partner");
+const auth = require("../middleware/auth");
 
 router.get("/", (req, res) => {
   Partner.find()
@@ -10,7 +11,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   const partnerRes = await Partner.create(req.body.partner);
 
   res.send(partnerRes);

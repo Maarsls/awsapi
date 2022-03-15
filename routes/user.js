@@ -1,19 +1,8 @@
 var router = require("express").Router();
 const User = require("../model/user");
 const jwt = require("jsonwebtoken");
-// const token = jwt.sign(
-//         { user_id: user._id, email },
-//         process.env.TOKEN_KEY,
-//         {
-//           expiresIn: "2h",
-//         }
-//       );
+const auth = require("../middleware/auth");
 
-//       // save user token
-//       user.token = token;
-
-//       // user
-//       res.status(200).json(user);
 router.get("/:nuuid", (req, res) => {
   User.findOne({ nuuid: req.params.nuuid })
     .exec()
@@ -36,7 +25,7 @@ router.get("/:nuuid", (req, res) => {
     });
 });
 
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   const userRes = await User.create(req.body.user);
 
   res.send(userRes);
