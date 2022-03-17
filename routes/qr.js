@@ -8,7 +8,7 @@ router.get("/redirect/:uuid", async (req, res) => {
 
 router.get("/:ticketuid", async (req, res) => {
   const content =
-    "http://ec2-3-66-167-52.eu-central-1.compute.amazonaws.com/qr/redirect/" +
+    "http://ec2-3-66-167-52.eu-central-1.compute.amazonaws.com:3000/qr/redirect/" +
     req.params.ticketuid;
   const qrStream = new Stream.PassThrough();
   const result = await QRCode.toFileStream(qrStream, content, {

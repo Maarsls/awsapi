@@ -6,7 +6,7 @@ const ticketsSchema = new mongoose.Schema({
   activationTime: { type: Date },
   status: { type: String },
   type: { type: String },
-  costumer: { type: String },
+  customer: { type: String },
   issuer: { type: String },
 });
 

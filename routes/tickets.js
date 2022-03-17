@@ -22,7 +22,7 @@ router.get("/byUser/:nuuid", auth, async (req, res) => {
   Tickets.find({ customer: req.params.nuuid })
     .exec()
     .then(function (tickets) {
-      if (tickets) res.send(tickets);
+      if (tickets) res.send({ success: true, ticket: tickets });
       else res.send({ success: false });
     });
 });
