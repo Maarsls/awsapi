@@ -19,7 +19,7 @@ router.post("/", auth, async (req, res) => {
 });
 
 router.get("/byUser/:nuuid", auth, async (req, res) => {
-  Tickets.find({ customer: req.params.nuuid })
+  Tickets.find({ customer: "notgiven" })
     .exec()
     .then(function (tickets) {
       if (tickets) res.send({ success: true, ticket: tickets });
