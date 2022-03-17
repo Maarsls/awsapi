@@ -1,5 +1,6 @@
 var router = require("express").Router();
 const Entries = require("../model/entries");
+const auth = require("../middleware/auth");
 
 router.get("/", auth, (req, res) => {
   Entries.find()
