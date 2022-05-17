@@ -37,11 +37,11 @@ router.post("/webhooks/orders/create", async (req, res) => {
     seatsArray.pop();
     console.log(seatsArray);
     // It's a match! All good
-    // let client = new seatsio.SeatsioClient(
-    //   seatsio.Region.EU(),
-    //   process.env.SEATSIOKEY
-    // );
-    // await client.events.book("agiball2022", seatsArray);
+    let client = new seatsio.SeatsioClient(
+      seatsio.Region.EU(),
+      process.env.SEATSIOKEY
+    );
+    await client.events.book("agiball2022", seatsArray);
     console.log("Phew, it came from Shopify!");
     res.sendStatus(200);
   } else {
