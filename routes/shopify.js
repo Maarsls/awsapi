@@ -1,34 +1,43 @@
 var router = require("express").Router();
-var verifyWebhook = require("verify-shopify-webhook");
 const crypto = require("crypto");
 const secretKey = process.env.SHOPIFYKEY;
 
-router.post("/webhooks/orders/create", async (req, res) => {
-  console.log("🎉 We got an order!");
+var bodyparser = require("body-parser");
 
-  const { verified, topic, domain, body } = await verifyWebhook.verifyWebhook(
-    req,
-    secretKey
-  );
+// Webhooks
+router.post("/", async (req, res) => {
+  console.log("Webhook heard!");
+  // Verify
+  const hmac = req.header("X-Shopify-Hmac-Sha256");
+  const topic = req.header("X-Shopify-Topic");
+  const shop = req.header("X-Shopify-Shop-Domain");
+
+  const verified = verifyWebhook(req.body, hmac);
 
   if (!verified) {
-    return res.status(403).send();
+    console.log("Failed to verify the incoming request.");
+    res.status(401).send("Could not verify request.");
+    return;
   }
 
-  if (verified) {
-    console.log("isvonshopifymaddafakka");
-  }
+  const data = req.body.toString();
+  const payload = JSON.parse(data);
+  console.log(
+    `Verified webhook request. Shop: ${shop} Topic: ${topic} \n Payload: \n ${data}`
+  );
 
-  req.body = body;
-  console.log(req.body);
+  res.status(200).send("OK");
 });
 
-function verifyShopifyHook(req) {
-  var digest = crypto
-    .createHmac("SHA256", secretKey)
-    .update(Buffer.alloc(req.body))
+// Verify incoming webhook.
+function verifyWebhook(payload, hmac) {
+  const message = payload.toString();
+  const genHash = crypto
+    .createHmac("sha256", process.env.SHOPIFYKEY)
+    .update(message)
     .digest("base64");
-
-  return digest === req.headers["X-Shopify-Hmac-Sha256"];
+  console.log(genHash);
+  return genHash === hmac;
 }
+
 module.exports = router;
