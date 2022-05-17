@@ -5,6 +5,9 @@ const express = require("express");
 
 const app = express();
 
+var bodyParser = require('body-parser')
+
+
 app.use(cors());
 
 app.use(express.json({ limit: "50mb" }));
@@ -19,7 +22,7 @@ app.use("/seats", require("./routes/seats"));
 app.use("/pdf", require("./routes/pdf"));
 app.use("/qr", require("./routes/qr"));
 app.use("/", require("./routes/main"));
-app.use("/shopify", require("./routes/shopify"));
+app.use("/shopify", bodyParser.raw(), require("./routes/shopify"));
 
 
 module.exports = app;

@@ -13,7 +13,7 @@ router.post('/webhooks/orders/create', async (req, res) => {
   console.log(req)
   // Use raw-body to get the body (buffer)
   // const body = await getRawBody(req)
-  const body = req.buffer() 
+  const body = req.body 
 
   // Create a hash using the body and our key
   const hash = crypto
