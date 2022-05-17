@@ -34,5 +34,32 @@ app.post('/shopify/webhooks/orders/create', async (req, res) => {
     res.sendStatus(403)
   }
 })
+// Dependencies
+const fs = require("fs");
+const http = require("http");
+const https = require("https");
+// Certificate
+const privateKey = fs.readFileSync(
+  process.cwd() + "/etc/letsencrypt/live/tyvent.at/privkey.pem",
+  "utf8"
+);
+const certificate = fs.readFileSync(
+  process.cwd() + "/etc/letsencrypt/live/tyvent.at/cert.pem",
+  "utf8"
+);
+const ca = fs.readFileSync(
+  process.cwd() + "/etc/letsencrypt/live/tyvent.at/chain.pem",
+  "utf8"
+);
 
-app.listen(443, () => console.log('Example app listening on port 6000!'))
+const credentials = {
+  key: privateKey,
+  cert: certificate,
+  ca: ca,
+};
+
+// Starting both http & https servers
+const httpsServer = https.createServer(credentials, app);
+httpsServer.listen(443, () => {
+    console.log("HTTPS Server running on port 443");
+  });
