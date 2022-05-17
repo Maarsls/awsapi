@@ -3,6 +3,7 @@ const crypto = require("crypto");
 const secretKey = process.env.SHOPIFYKEY;
 
 var bodyparser = require("body-parser");
+router.use(bodyparser.raw({ type: "application/json" }));
 
 // Webhooks
 router.post("/", async (req, res) => {
