@@ -8,7 +8,7 @@ app.get("/", (req, res) => {
     res.send("Hello World!")
 })
 
-app.post('/webhooks/orders/create', async (req, res) => {
+app.post('/shopify/webhooks/orders/create', async (req, res) => {
   console.log('🎉 We got an order!')
 
   // We'll compare the hmac to our own hash
@@ -35,4 +35,4 @@ app.post('/webhooks/orders/create', async (req, res) => {
   }
 })
 
-app.listen(6000, () => console.log('Example app listening on port 6000!'))
+app.listen(443, () => console.log('Example app listening on port 6000!'))
