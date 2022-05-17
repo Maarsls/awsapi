@@ -1,19 +1,18 @@
 var router = require("express").Router();
-const crypto = require("crypto");
-const secretKey = process.env.SHOPIFYKEY;
-const seatsio = require("seatsio");
-const getRawBody = require("raw-body");
+const express = require('express')
+const app = express()
+const getRawBody = require('raw-body')
+const crypto = require('crypto')
+const secretKey = process.env.SHOPIFYKEY
 
-router.post('/webhooks/orders/create', async (req, res) => {
+app.post('/webhooks/orders/create', async (req, res) => {
   console.log('🎉 We got an order!')
 
   // We'll compare the hmac to our own hash
   const hmac = req.get('X-Shopify-Hmac-Sha256')
 
-  console.log(req)
   // Use raw-body to get the body (buffer)
-  // const body = await getRawBody(req)
-  const body = req.body 
+  const body = await getRawBody(req)
 
   // Create a hash using the body and our key
   const hash = crypto
@@ -31,5 +30,5 @@ router.post('/webhooks/orders/create', async (req, res) => {
     console.log('Danger! Not from Shopify!')
     res.sendStatus(403)
   }
-})  // end of webhooks
+})
 module.exports = router;
