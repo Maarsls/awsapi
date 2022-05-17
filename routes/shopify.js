@@ -1,32 +1,42 @@
 var router = require("express").Router();
-const getRawBody = require('raw-body')
-const crypto = require('crypto')
-const secretKey = process.env.SHOPIFYKEY
+const getRawBody = require("raw-body");
+const crypto = require("crypto");
+const secretKey = process.env.SHOPIFYKEY;
 
-router.post('/webhooks/orders/create', async (req, res) => {
-  console.log('🎉 We got an order!')
+router.post("/webhooks/orders/create", async (req, res) => {
+  console.log("🎉 We got an order!");
 
-  // We'll compare the hmac to our own hash
-  const hmac = req.get('X-Shopify-Hmac-Sha256')
-
-  // Use raw-body to get the body (buffer)
-  const body = await getRawBody(req)
-
-  // Create a hash using the body and our key
-  const hash = crypto
-    .createHmac('sha256', secretKey)
-    .update(body, 'utf8', 'hex')
-    .digest('base64')
-
-  // Compare our hash to Shopify's hash
-  if (hash === hmac) {
-    // It's a match! All good
-    console.log('Phew, it came from Shopify!')
-    res.sendStatus(200)
+  if (verifyShopifyHook(req)) {
+    res.writeHead(200);
+    res.end("Verified webhook");
   } else {
-    // No match! This request didn't originate from Shopify
-    console.log('Danger! Not from Shopify!')
-    res.sendStatus(403)
+    res.writeHead(401);
+    res.end("Unverified webhook");
   }
-})
+});
+
+function verifyShopifyHook(req) {
+  var digest = crypto
+    .createHmac("SHA256", secretKey)
+    .update(new Buffer(req.body, "utf8"))
+    .digest("base64");
+
+  return digest === req.headers["X-Shopify-Hmac-Sha256"];
+}
+
+function handleRequest(req, res) {
+  if (verifyShopifyHook(req)) {
+    res.writeHead(200);
+    res.end("Verified webhook");
+  } else {
+    res.writeHead(401);
+    res.end("Unverified webhook");
+  }
+}
+
+server = http.createServer(parseRequestBody);
+
+server.listen(PORT, function () {
+  console.log("Server listening on: http://localhost:%s", PORT);
+});
 module.exports = router;
