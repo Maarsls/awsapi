@@ -1,5 +1,5 @@
 var router = require("express").Router();
-import verifyWebhook from 'verify-shopify-webhook';
+var verifyWebhook = require("verify-shopify-webhook")
 const crypto = require("crypto");
 const secretKey = process.env.SHOPIFYKEY;
 
