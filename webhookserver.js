@@ -4,6 +4,10 @@ const getRawBody = require('raw-body')
 const crypto = require('crypto')
 const secretKey = process.env.SHOPIFYKEY
 
+app.get("/", (req, res) => {
+    res.send("Hello World!")
+})
+
 app.post('/webhooks/orders/create', async (req, res) => {
   console.log('🎉 We got an order!')
 
