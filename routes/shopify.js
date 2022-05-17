@@ -1,11 +1,9 @@
 var router = require("express").Router();
-const express = require('express')
-const app = express()
 const getRawBody = require('raw-body')
 const crypto = require('crypto')
 const secretKey = process.env.SHOPIFYKEY
 
-app.post('/webhooks/orders/create', async (req, res) => {
+router.post('/webhooks/orders/create', async (req, res) => {
   console.log('🎉 We got an order!')
 
   // We'll compare the hmac to our own hash
