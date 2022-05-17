@@ -1,11 +1,10 @@
 var router = require("express").Router();
-var verifyWebhook = require("verify-shopify-webhook")
+var verifyWebhook = require("verify-shopify-webhook");
 const crypto = require("crypto");
 const secretKey = process.env.SHOPIFYKEY;
 
 router.post("/webhooks/orders/create", async (req, res) => {
   console.log("🎉 We got an order!");
-
 
   const { verified, topic, domain, body } = await verifyWebhook.verifyWebhook(
     req,
@@ -14,6 +13,10 @@ router.post("/webhooks/orders/create", async (req, res) => {
 
   if (!verified) {
     return res.status(403).send();
+  }
+
+  if (verified) {
+    console.log("isvonshopifymaddafakka");
   }
 
   req.body = body;
