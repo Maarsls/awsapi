@@ -9,6 +9,8 @@ app.use(cors());
 
 app.use(express.json({ limit: "50mb" }));
 
+app.use(bodyParser.json());
+
 app.use("/entries", require("./routes/entries"));
 app.use("/tickets", require("./routes/tickets"));
 app.use("/partner", require("./routes/partner"));
