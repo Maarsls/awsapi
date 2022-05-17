@@ -7,6 +7,7 @@ const seatsio = require("seatsio");
 const getRawBody = require("raw-body");
 
 router.post("/webhooks/orders/create", async (req, res) => {
+  console.log(req)
   console.log("🎉 We got an order!");
   console.log(secretKey);
   console.log(req.get("X-Shopify-Hmac-SHA256"));
