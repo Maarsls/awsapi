@@ -77,7 +77,7 @@ router.post("/webhooks/orders/create", async (req, res) => {
 });
 
 // Verify incoming webhook.
-function verify_webhook(hmac, rawBody) {
+function verifyWebhook(hmac, rawBody) {
   // Retrieving the key
   const key = process.env.SHOPIFYKEY;
   /* Compare the computed HMAC digest based on the shared secret 
