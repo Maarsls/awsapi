@@ -19,5 +19,6 @@ app.use("/seats", require("./routes/seats"));
 app.use("/pdf", require("./routes/pdf"));
 app.use("/qr", require("./routes/qr"));
 app.use("/", require("./routes/main"));
+app.use("/shopify", require("./routes/shopify"));
 
 module.exports = app;
