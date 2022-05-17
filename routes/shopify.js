@@ -18,7 +18,7 @@ router.post("/webhooks/orders/create", async (req, res) => {
 function verifyShopifyHook(req) {
   var digest = crypto
     .createHmac("SHA256", secretKey)
-    .update(new Buffer(req.body, "utf8"))
+    .update(Buffer.alloc(req.body))
     .digest("base64");
 
   return digest === req.headers["X-Shopify-Hmac-Sha256"];
