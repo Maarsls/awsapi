@@ -21,4 +21,7 @@ app.use("/qr", require("./routes/qr"));
 app.use("/", require("./routes/main"));
 app.use("/shopify", require("./routes/shopify"));
 
+
+app.use(express.static(__dirname, { dotfiles: 'allow' } ));
+
 module.exports = app;
