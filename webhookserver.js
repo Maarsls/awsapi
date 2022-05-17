@@ -3,6 +3,7 @@ const app = express()
 const getRawBody = require('raw-body')
 const crypto = require('crypto')
 const secretKey = process.env.SHOPIFYKEY
+const seatsio = require("seatsio");
 
 app.get("/", (req, res) => {
     res.send("Hello World!")
@@ -27,6 +28,20 @@ app.post('/shopify/webhooks/orders/create', async (req, res) => {
   if (hash === hmac) {
     // It's a match! All good
     console.log('Phew, it came from Shopify!')
+    console.log("job done");
+    const order = JSON.parse(body.toString());
+    let seatsArray = [];
+    let orderNote = order.note;
+    const noWhitespace = orderNote.replace(/\s/g, "");
+    seatsArray = noWhitespace.split(",");
+    seatsArray.pop();
+    console.log(seatsArray);
+    // It's a match! All good
+    let client = new seatsio.SeatsioClient(
+      seatsio.Region.EU(),
+      process.env.SEATSIOKEY
+    );
+    await client.events.book("agiball2022", seatsArray);
     res.sendStatus(200)
   } else {
     // No match! This request didn't originate from Shopify
