@@ -1,6 +1,6 @@
 require("dotenv").config();
 require("./config/database").connect();
-const cors = require('cors');
+const cors = require("cors");
 const express = require("express");
 
 const app = express();
@@ -19,5 +19,8 @@ app.use("/seats", require("./routes/seats"));
 app.use("/pdf", require("./routes/pdf"));
 app.use("/qr", require("./routes/qr"));
 app.use("/", require("./routes/main"));
+app.use("/paypal", require("./routes/paypal"));
+app.use("/shopify", require("./routes/shopify"));
+
 
 module.exports = app;
