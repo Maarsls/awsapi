@@ -23,20 +23,4 @@ function verifyShopifyHook(req) {
 
   return digest === req.headers["X-Shopify-Hmac-Sha256"];
 }
-
-function handleRequest(req, res) {
-  if (verifyShopifyHook(req)) {
-    res.writeHead(200);
-    res.end("Verified webhook");
-  } else {
-    res.writeHead(401);
-    res.end("Unverified webhook");
-  }
-}
-
-server = http.createServer(parseRequestBody);
-
-server.listen(PORT, function () {
-  console.log("Server listening on: http://localhost:%s", PORT);
-});
 module.exports = router;
