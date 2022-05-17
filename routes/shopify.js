@@ -36,7 +36,8 @@ function verifyWebhook(payload, hmac) {
     .createHmac("sha256", process.env.SHOPIFYKEY)
     .update(message)
     .digest("base64");
-  console.log(genHash);
+  console.log(genHash + " " + hmac);
+
   return genHash === hmac;
 }
 
