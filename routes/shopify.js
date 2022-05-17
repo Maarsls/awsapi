@@ -1,18 +1,23 @@
 var router = require("express").Router();
-const getRawBody = require("raw-body");
+import verifyWebhook from 'verify-shopify-webhook';
 const crypto = require("crypto");
 const secretKey = process.env.SHOPIFYKEY;
 
 router.post("/webhooks/orders/create", async (req, res) => {
   console.log("🎉 We got an order!");
 
-  if (verifyShopifyHook(req)) {
-    res.writeHead(200);
-    res.end("Verified webhook");
-  } else {
-    res.writeHead(401);
-    res.end("Unverified webhook");
+
+  const { verified, topic, domain, body } = await verifyWebhook(
+    req,
+    secretKey
+  );
+
+  if (!verified) {
+    return res.status(403).send();
   }
+
+  req.body = body;
+  console.log(req.body);
 });
 
 function verifyShopifyHook(req) {

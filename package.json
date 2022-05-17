@@ -34,6 +34,7 @@
     "order-id": "^2.1.2",
     "qrcode": "^1.5.0",
     "seatsio": "^67.8.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "verify-shopify-webhook": "^1.0.5"
   }
 }
