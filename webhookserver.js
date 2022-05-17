@@ -1,4 +1,5 @@
 const express = require("express");
+require("dotenv").config();
 const app = express();
 const getRawBody = require("raw-body");
 const crypto = require("crypto");
