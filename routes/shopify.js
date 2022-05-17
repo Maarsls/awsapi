@@ -7,7 +7,7 @@ router.post("/webhooks/orders/create", async (req, res) => {
   console.log("🎉 We got an order!");
 
 
-  const { verified, topic, domain, body } = await verifyWebhook(
+  const { verified, topic, domain, body } = await verifyWebhook.verifyWebhook(
     req,
     secretKey
   );
