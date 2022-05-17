@@ -7,7 +7,7 @@ const seatsio = require("seatsio");
 const getRawBody = require("raw-body");
 
 router.post("/webhooks/orders/createw", async (req, res) => {
-  console.log(req)
+  console.log(req);
   console.log("🎉 We got an order!");
   console.log(secretKey);
   console.log(req.get("X-Shopify-Hmac-SHA256"));
@@ -52,7 +52,6 @@ router.post("/webhooks/orders/createw", async (req, res) => {
   }
 });
 
-
 router.post("/webhooks/orders/create", async (req, res) => {
   console.log("Webhook heard!");
   // Verify
@@ -79,6 +78,7 @@ router.post("/webhooks/orders/create", async (req, res) => {
 
 // Verify incoming webhook.
 function verifyWebhook(payload, hmac) {
+  console.log("key" + process.env.SHOPIFYKEY);
   const message = payload.toString();
   const genHash = crypto
     .createHmac("sha256", process.env.SHOPIFYKEY)
