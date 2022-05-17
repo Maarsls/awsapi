@@ -12,6 +12,8 @@ router.post("/", async (req, res) => {
   const topic = req.header("X-Shopify-Topic");
   const shop = req.header("X-Shopify-Shop-Domain");
 
+  console.log(shop + " " + topic);
+
   const verified = verifyWebhook(req.body, hmac);
 
   if (!verified) {
