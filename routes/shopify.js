@@ -77,15 +77,17 @@ router.post("/webhooks/orders/create", async (req, res) => {
 });
 
 // Verify incoming webhook.
-function verifyWebhook(payload, hmac) {
-  console.log("key" + process.env.SHOPIFYKEY);
-  const message = payload.toString();
-  const genHash = crypto
-    .createHmac("sha256", process.env.SHOPIFYKEY)
-    .update(message)
-    .digest("base64");
-  console.log(genHash);
-  return genHash === hmac;
+function verify_webhook(hmac, rawBody) {
+  // Retrieving the key
+  const key = process.env.SHOPIFYKEY;
+  /* Compare the computed HMAC digest based on the shared secret 
+   * and the request contents
+  */
+  const hash = crypto
+        .createHmac('sha256', key)
+        .update(rawBody, 'utf8', 'hex')
+        .digest('base64');
+  return(hmac === hash);
 }
 
 module.exports = router;
