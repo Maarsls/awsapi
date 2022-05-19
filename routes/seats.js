@@ -26,7 +26,8 @@ router.get("/report", (req, res) => {
     seatsio.Region.EU(),
     process.env.SEATSIOKEY
   );
-  res.send(await client.eventReports.byObjectType('agiball2022'));
+  const resseat = await client.eventReports.byObjectType('agiball2022')
+  res.send(resseat);
 });
 
 router.post("/", async (req, res) => {
