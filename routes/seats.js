@@ -21,7 +21,7 @@ router.get("/", (req, res) => {
     });
 });
 
-router.get("/report", (req, res) => {
+router.get("/report", async (req, res) => {
   let client = new seatsio.SeatsioClient(
     seatsio.Region.EU(),
     process.env.SEATSIOKEY
