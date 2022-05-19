@@ -47,7 +47,8 @@ app.post("/shopify/webhooks/orders/create", async (req, res) => {
         seatsio.Region.EU(),
         process.env.SEATSIOKEY
       );
-      await client.events.book("agiball2022", seatsArray);
+      console.log(orderObject);
+      await client.events.book("agiball2022", orderObject);
     }
     console.log("Phew, it came from Shopify!");
     res.sendStatus(200);
