@@ -40,7 +40,7 @@ app.post("/shopify/webhooks/orders/create", async (req, res) => {
       console.log(seatsArray);
       let orderObject = [];
       seatsArray.forEach((seat) => {
-        orderObject.push({objectId: seat, extradata: {order_id: order.id, name: order.customer.last_name}});
+        orderObject.push({objectId: seat, extraData: {order_id: order.id, name: order.customer.last_name}});
       });
       // It's a match! All good
       let client = new seatsio.SeatsioClient(
