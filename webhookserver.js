@@ -38,6 +38,10 @@ app.post("/shopify/webhooks/orders/create", async (req, res) => {
       seatsArray = noWhitespace.split(",");
       seatsArray.pop();
       console.log(seatsArray);
+      let orderObject = [];
+      seatsArray.forEach((seat) => {
+        orderObject.push({objectId: seat, extradata: {order_id: order.id, name: order.customer.last_name}});
+      });
       // It's a match! All good
       let client = new seatsio.SeatsioClient(
         seatsio.Region.EU(),
@@ -57,6 +61,7 @@ app.post("/shopify/webhooks/orders/create", async (req, res) => {
 const fs = require("fs");
 const http = require("http");
 const https = require("https");
+const seats = require("./model/seats");
 // Certificate
 const privateKey = fs.readFileSync(
   process.cwd() + "/etc/letsencrypt/live/tyvent.at/privkey.pem",
