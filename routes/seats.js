@@ -1,5 +1,6 @@
 var router = require("express").Router();
 const Seats = require("../model/seats");
+const seatsio = require("seatsio");
 
 router.get("/", (req, res) => {
   Seats.find()
@@ -18,6 +19,14 @@ router.get("/", (req, res) => {
       console.log(result);
       res.send(result);
     });
+});
+
+router.get("/report", (req, res) => {
+  let client = new seatsio.SeatsioClient(
+    seatsio.Region.EU(),
+    process.env.SEATSIOKEY
+  );
+  res.send(await client.eventReports.byObjectType('agiball2022'));
 });
 
 router.post("/", async (req, res) => {
