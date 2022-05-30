@@ -36,7 +36,7 @@ app.post("/shopify/webhooks/orders/create", async (req, res) => {
       let orderNote = order.note;
       const noWhitespace = orderNote.replace(/\s/g, "");
       seatsArray = noWhitespace.split(",");
-      seatsArray.pop();
+      let holdToken = seatsArray.pop();
       console.log(seatsArray);
       let orderObject = [];
       seatsArray.forEach((seat) => {
@@ -48,7 +48,7 @@ app.post("/shopify/webhooks/orders/create", async (req, res) => {
         process.env.SEATSIOKEY
       );
       console.log(orderObject);
-      await client.events.book("agiball2022", orderObject);
+      await client.events.book("agiball2022", {objects: orderObject, holdToken});
     }
     console.log("Phew, it came from Shopify!");
     res.sendStatus(200);
