@@ -48,7 +48,7 @@ app.post("/shopify/webhooks/orders/create", async (req, res) => {
         process.env.SEATSIOKEY
       );
       console.log(orderObject);
-      await client.events.book("agiball2022", {objects: orderObject, holdToken});
+      await client.events.book("agiball2022",  orderObject, holdToken);
     }
     console.log("Phew, it came from Shopify!");
     res.sendStatus(200);

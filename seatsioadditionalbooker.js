@@ -11,6 +11,11 @@ let orderObject = [
     extraData: { order_id: "AGI1072ca62549d", name: "Zepharovich" },
   },
 ];
-client.events.book("agiball2022", orderObject).then((result) => {
-  console.log(result);
-}); //[{objectId: "A1", extraData: {order_id: "123", name: "John"}}]
+client.events
+  .book("agiball2022", orderObject, "asdfasdfasdf")
+  .then((result) => {
+    console.log(result);
+  })
+  .catch((error) => {
+    console.log(error);
+  }); //[{objectId: "A1", extraData: {order_id: "123", name: "John"}}]
