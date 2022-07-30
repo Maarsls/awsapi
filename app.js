@@ -1,6 +1,6 @@
 require("dotenv").config();
 require("./config/database").connect();
-const cors = require('cors');
+const cors = require("cors");
 const express = require("express");
 
 const app = express();
@@ -21,5 +21,7 @@ app.use("/qr", require("./routes/qr"));
 app.use("/", require("./routes/main"));
 app.use("/shopify", require("./routes/shopify"));
 
+//FÜR EVENTS
+app.use("/shopify/test-tyvent", require("./routes/shopifyR/test-tyvent")); // für jedes event wird eine route angelegt
 
 module.exports = app;

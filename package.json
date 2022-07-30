@@ -17,13 +17,16 @@
   },
   "homepage": "https://github.com/agiball/awsapi#readme",
   "dependencies": {
+    "@shopify/shopify-api": "^5.0.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.2",
     "certbot": "^5.0.3",
     "cors": "^2.8.5",
-    "dotenv": "^16.0.0",
+    "dotenv": "^16.0.1",
     "ejs": "^3.1.6",
     "express": "^4.17.3",
+    "fs": "^0.0.1-security",
+    "handlebars": "^4.7.7",
     "helmet": "^5.0.2",
     "install": "^0.13.0",
     "jsonwebtoken": "^8.5.1",
@@ -32,8 +35,10 @@
     "mongoose": "^6.2.2",
     "morgan": "^1.10.0",
     "order-id": "^2.1.2",
+    "puppeteer": "^14.4.1",
     "qrcode": "^1.5.0",
     "seatsio": "^67.8.0",
+    "sqlite3": "^5.0.8",
     "uuid": "^8.3.2",
     "verify-shopify-webhook": "^1.0.5"
   }

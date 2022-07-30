@@ -1,0 +1,501 @@
+Name	Sitzplatz	bestellte Menüs	Ist gekommen?
+Abermann	805-1		
+Abermann	805-3		
+Abermann	805-4		
+Abermann	805-5		
+Abermann	805-6		
+Abermann	805-7		
+Abermann	805-8		
+Abermann	805-2		
+Antonova	308-8		
+Antonova	308-7		
+Barbach	L12-2		
+Barbach	L12-1		
+Barbach	L12-3		
+Barbach	L12-4		
+Barbach	L12-7		
+Barbach	L12-6		
+Barbach	L12-8		
+Barbach	L12-5		
+Barbach	L12-10		
+Barbach	L12-9		
+Beal	304-4	Fleisch 3x Fisch 1x Vegetarisch 1x	
+Beal	304-3		
+Beal	304-6		
+Beal	304-5		
+Beal	304-8		
+Beal	304-7		
+Beal	304-10		
+Beal	304-9		
+Canazei	401-1		
+Canazei	401-3		
+Canazei	401-2		
+Canazei	401-7		
+Canazei	401-8		
+Canazei	401-6		
+Clemens Schirmer	503-1		
+Clemens Schirmer	503-4		
+Clemens Schirmer	503-2		
+Clemens Schirmer	503-5		
+Clemens Schirmer	503-3		
+Clemens Schirmer	503-7		
+Clemens Schirmer	503-8		
+Clemens Schirmer	503-9		
+Clemens Schirmer	503-11		
+Clemens Schirmer	503-12		
+Clemens Schirmer	503-6		
+Clemens Schirmer	503-10		
+Dobrowz	308-3		
+Dobrowz	308-5		
+Dobrowz	308-6		
+Dobrowz	308-4		
+Egger	954-2		
+Egger	954-3		
+Egger	954-5		
+Egger	954-6		
+Egger	954-7		
+Egger	954-8		
+Egger	954-4		
+Elchazali	504-5		
+Elchazali	504-6		
+Elchazali	504-8		
+Ennemoser	402-1		
+Ennemoser	402-2		
+Ennemoser	402-3		
+Ennemoser	402-6		
+Ennemoser	402-7		
+Ennemoser	402-8		
+Gündogdu	906-1		
+Gündogdu	906-2		
+Gündogdu	906-3		
+Gündogdu	906-4		
+Gündogdu	906-7		
+Gündogdu	906-8		
+Gündogdu	906-6		
+Garzaner	L3-6	Fleisch 1x Fisch 2x Vegetarisch 1x	
+Garzaner	L3-8		
+Garzaner	L3-7		
+Garzaner	L3-9		
+Gföller	702-1		
+Gföller	702-2		
+Gföller	702-3		
+Gföller	702-4		
+Gföller	702-6		
+Gföller	702-5		
+Gföller	702-7		
+Gföller	702-8		
+Girod	804-3		
+Girod	804-5		
+Girod	804-4		
+Girod	804-2		
+Girod	804-7		
+Girod	804-6		
+Grassegger	953-5		
+Grassegger	953-6		
+Grassegger	953-7		
+Höfert	953-2		
+Höfert	953-3		
+Höfert	953-4		
+Held	908-2		
+Held	908-4		
+Held	908-1		
+Held	908-5		
+Held	908-7		
+Held	908-3		
+Held	958-1		
+Held	908-8		
+Held	958-3		
+Held	958-4		
+Held	958-2		
+Held	958-8		
+Held	958-7		
+Held	908-6		
+Hofer	505-1	Fleisch 4x Fisch 4x	
+Hofer	505-2		
+Hofer	505-7		
+Hofer	505-8		
+Hofer	703-1		
+Hofer	703-3		
+Hofer	703-5		
+Hofer	703-2		
+Hofer	703-7		
+Hofer	703-6		
+Hofer	703-8		
+Hofer	703-10		
+Hofer	703-4		
+Hofer	703-11		
+Hofer	703-9		
+Hofer	703-12		
+Jürgens	904-1		
+Jürgens	904-6		
+Jürgens	904-2		
+Jürgens	904-7		
+Jürgens	904-8		
+Jachs	601-2	Fleisch 6x	
+Jachs	601-3		
+Jachs	601-1		
+Jachs	601-4		
+Jachs	601-5		
+Jachs	601-6		
+Jachs	601-8		
+Jachs	601-7		
+Kapferer	L7-1		
+Kapferer	L7-3		
+Kapferer	L7-2		
+Kapferer	L7-10		
+Kapferer	L7-9		
+Katzlinger	808-3		
+Katzlinger	808-4		
+Katzlinger	808-5		
+Klee	302-3		
+Klee	302-5		
+Klee	302-4		
+Kofler	L4-1		
+Kofler	L4-2		
+Kofler	L4-5		
+Kofler	L4-4		
+Kofler	L4-7		
+Kofler	L4-6		
+Kofler	L4-3		
+Kofler	L4-8		
+Kofler	L4-10		
+Kofler	L4-9		
+Kohlegger	9055-7		
+Kohlegger	9055-8		
+Kopp	504-1	Fleisch 3x Vegetarisch 3x	
+Kopp	504-4		
+Kopp	504-3		
+Kopp	504-2		
+Kopp	504-7		
+Kopp	504-10		
+Kopp	504-9		
+Kopp	504-11		
+Kopp	504-12		
+Korenjak	403-1	Fleisch 3x Fisch 3x vegetarisch 4x	
+Korenjak	403-4		
+Korenjak	403-3		
+Korenjak	403-8		
+Korenjak	403-5		
+Korenjak	403-9		
+Korenjak	403-11		
+Korenjak	403-10		
+Korenjak	403-12		
+Korenjak	403-2		
+Kranebitter	404-1		
+Kranebitter	404-4		
+Kranebitter	404-3		
+Kranebitter	404-8		
+Kranebitter	404-2		
+Kranebitter	404-10		
+Kranebitter	404-5		
+Kranebitter	404-11		
+Kranebitter	404-9		
+Kranebitter	404-12		
+Lechleitner	9055-1	Fleisch 2x Fisch 4x	
+Lechleitner	9055-2		
+Lechleitner	9055-3		
+Lechleitner	9055-4		
+Lechleitner	9055-5		
+Lechleitner	9055-6		
+Lehrer	952-1		
+Lehrer	952-2		
+Lehrer	952-4		
+Lehrer	952-5		
+Lehrer	952-3		
+Lehrer	952-7		
+Lehrer	952-6		
+Lehrer	902-1		
+Lehrer	902-2		
+Lehrer	902-3		
+Lehrer	952-8		
+Lehrer	902-4		
+Lehrer	902-5		
+Lehrer	902-6		
+Lehrer	902-8		
+Lehrer	802-2		
+Lehrer	902-7		
+Lehrer	802-4		
+Lehrer	802-3		
+Lehrer	802-6		
+Lehrer	802-7		
+Lehrer	802-5		
+Lehrer	801-1		
+Lehrer	801-3		
+Lehrer	801-2		
+Lehrer	801-4		
+Lehrer	801-5		
+Lehrer	802-8		
+Lehrer	801-6		
+Lehrer	801-7		
+Lehrer	801-8		
+Lehrer	901-2		
+Lehrer	901-1		
+Lehrer	901-4		
+Lehrer	901-3		
+Lehrer	901-6		
+Lehrer	802-1		
+Lehrer	901-8		
+Lehrer	901-7		
+Lehrer	951-1		
+Lehrer	951-2		
+Lehrer	951-3		
+Lehrer	951-5		
+Lehrer	951-6		
+Lehrer	951-4		
+Lehrer	951-7		
+Lehrer	951-8		
+Lehrer	950-1		
+Lehrer	950-2		
+Lehrer	950-3		
+Lehrer	950-4		
+Lehrer	950-6		
+Lehrer	901-5		
+Lehrer	950-8		
+Lehrer	950-7		
+Lehrer	900-1		
+Lehrer	950-5		
+Lehrer	900-3		
+Lehrer	900-2		
+Lehrer	900-4		
+Lehrer	900-5		
+Lehrer	900-7		
+Lehrer	900-6		
+Lehrer	800-1		
+Lehrer	800-2		
+Lehrer	900-8		
+Lehrer	800-5		
+Lehrer	800-3		
+Lehrer	800-6		
+Lehrer	800-7		
+Lehrer	800-8		
+Lehrer	800-4		
+Leitner (extra Sitzplatz)	L9-8		
+Müssiggang	204-1	Fisch 2x	
+Müssiggang	204-2		
+Maffey	808-1		
+Maffey	808-8		
+Maffey Nada	307-1		
+Maffey Nada	307-2		
+Maffey Nada	307-3		
+Maffey Nada	307-4		
+Maffey Nada	307-5		
+Maffey Nada	307-7		
+Maffey Nada	307-6		
+Malleier	L10-7		
+Malleier	L10-8		
+Malleier	L10-10		
+Malleier	L10-9		
+Marcus	704-2	Fleisch 4x	
+Marcus	704-3		
+Marcus	704-5		
+Marcus	704-1		
+Marcus	704-8		
+Marcus	704-10		
+Marcus	704-9		
+Marcus	704-4		
+Marcus	704-12		
+Marcus	704-11		
+Mark	603-9	Fleisch 1x Fisch 3x	
+Mark	603-10		
+Mark	603-12		
+Mark	603-11		
+Mast	301-3		
+Mast	301-2		
+Mast	301-8		
+Mast	301-6		
+Mast	301-7		
+Mayr Ramos 	305-1		
+Mayr Ramos 	305-3		
+Mayr Ramos 	305-2		
+Mayr Ramos 	305-6		
+Mayr Ramos 	305-7		
+Mayr Ramos 	305-8		
+Mitteregger	705-2		
+Mitteregger	705-1		
+Mitteregger	705-3		
+Mitteregger	705-5		
+Mitteregger	705-4		
+Mitteregger	705-6		
+Mitteregger	705-7		
+Mitteregger	705-8		
+Nogler-Semenitz	502-1	Fleisch 2x Vegetarisch 2x	
+Nogler-Semenitz	502-3		
+Nogler-Semenitz	502-2		
+Nogler-Semenitz	502-6		
+Nogler-Semenitz	502-8		
+Nogler-Semenitz	502-7		
+Oberdorfer	207-2	Fleisch 3x Fisch 2x Vegetarisch 3x	
+Oberdorfer	207-1		
+Oberdorfer	207-4		
+Oberdorfer	207-5		
+Oberdorfer	207-6		
+Oberdorfer	207-7		
+Oberdorfer	207-8		
+Oberdorfer	207-3		
+Oberhammer	301-4		
+Oberhammer	301-5		
+Oberhammer	300-1		
+Oberhammer	300-2		
+Oberhammer	300-3		
+Oberhammer	300-4		
+Oberhammer	300-5		
+Oberhammer	300-8		
+Oberhammer	300-6		
+Oberhammer	300-7		
+Paulweber	701-1		
+Paulweber	701-8		
+Paulweber	701-2		
+Paulweber	701-7		
+Pichler	209-1	Fisch 1x Vegetarisch 3x	
+Pichler	209-2		
+Pichler	209-7		
+Pichler	209-8		
+Prantl	103-2		
+Prantl	103-1		
+Prantl	103-3		
+Prantl	103-5		
+Prantl	103-4		
+Prantl	103-8		
+Prantl	103-9		
+Prantl	103-10		
+Prantl	103-12		
+Prantl	103-7		
+Prantl	103-11		
+Ritzer	L13-5	Fleisch 1x	
+Ritzer	L13-4		
+Ritzer	L13-6		
+Ritzer	L13-7		
+Sanzenbacher	603-1	Fleisch 4x Fisch 1x	
+Sanzenbacher	603-2		
+Sanzenbacher	603-3		
+Sanzenbacher	603-4		
+Sanzenbacher	603-5		
+Schmidt	903-2	Fleisch 3x Vegetarisch 1x	
+Schmidt	903-3		
+Schmidt	903-5		
+Schmidt	903-7		
+Schmidt	903-4		
+Schmidt	903-6		
+Seifert	309-2	Fleisch 3x Fisch 1x	
+Seifert	309-6		
+Seifert	309-3		
+Seifert	309-7		
+Sherpa 	L5-1		
+Sherpa 	L5-4		
+Sherpa 	L5-5		
+Sherpa 	L5-3		
+Sherpa 	L5-6		
+Sherpa 	L5-7		
+Sherpa 	L5-8		
+Sherpa 	L5-10		
+Sherpa 	L5-2		
+Sidoroff	107-1		
+Sidoroff	107-2		
+Sidoroff	107-3		
+Sidoroff	107-4		
+Sidoroff	107-6		
+Sidoroff	107-8		
+Sidoroff	107-5		
+Sidoroff	107-7		
+Sidoroff-Kraker	605-1		
+Sidoroff-Kraker	605-3		
+Sidoroff-Kraker	605-2		
+Sidoroff-Kraker	605-6		
+Sidoroff-Kraker	605-5		
+Sidoroff-Kraker	605-8		
+Sidoroff-Kraker	605-4		
+Sidoroff-Kraker	605-7		
+Staudacher-Cernin	L6-1		
+Staudacher-Cernin	L6-3		
+Staudacher-Cernin	L6-9		
+Staudacher-Cernin	L6-2		
+Staudacher-Cernin	L6-10		
+Staudacher-Cernin	L6-8		
+Strickner	603-8	Fleisch 1x	
+Stummer	108-2		
+Stummer	108-3		
+Stummer	108-5		
+Stummer	108-4		
+Stummer	108-6		
+Taxi Auer Yellow Cab & Rathaus CafÃ©	L11-1		
+Taxi Auer Yellow Cab & Rathaus CafÃ©	L11-2		
+Taxi Auer Yellow Cab & Rathaus CafÃ©	L11-3		
+Taxi Auer Yellow Cab & Rathaus CafÃ©	L11-6		
+Taxi Auer Yellow Cab & Rathaus CafÃ©	L11-4		
+Taxi Auer Yellow Cab & Rathaus CafÃ©	L11-5		
+Taxi Auer Yellow Cab & Rathaus CafÃ©	L11-7		
+Taxi Auer Yellow Cab & Rathaus CafÃ©	L11-10		
+Taxi Auer Yellow Cab & Rathaus CafÃ©	L11-8		
+Taxi Auer Yellow Cab & Rathaus CafÃ©	L11-9		
+Tschellnig	602-2		
+Tschellnig	602-3		
+Tschellnig	602-4		
+Tschellnig	602-1		
+Tschellnig	602-5		
+Tschellnig	602-6		
+Tschellnig	602-7		
+Tschellnig	602-8		
+Unterberger	907-3		
+Unterberger	907-5		
+Unterberger	907-4		
+Unterberger	907-6		
+Unterberger	807-1		
+Unterberger	807-2		
+Unterberger	807-4		
+Unterberger	807-3		
+Unterberger	807-7		
+Unterberger	807-8		
+Unterberger	807-6		
+Unterberger	807-5		
+Vallazza	604-1		
+Vallazza	604-2		
+Vallazza	604-5		
+Vallazza	604-3		
+Vallazza	604-9		
+Vallazza	604-8		
+Vallazza	604-10		
+Vallazza	604-4		
+Vallazza	604-12		
+Vallazza	604-11		
+Vescoli	501-1	Fleisch 2x Fisch 2x	
+Vescoli	501-2		
+Vescoli	501-7		
+Vescoli	501-8		
+Wach	806-3	Fleisch 4x Fisch 2x	
+Wach	806-5		
+Wach	806-2		
+Wach	806-4		
+Wach	806-6		
+Wach	806-7		
+weber	304-1		
+weber	304-2		
+weber	304-11		
+weber	304-12		
+Wedekind	205-1	Fisch 7x	
+Wedekind	205-3		
+Wedekind	205-2		
+Wedekind	205-4		
+Wedekind	205-5		
+Wedekind	205-7		
+Wedekind	205-6		
+Wedekind	205-8		
+Weiss	803-4		
+Weiss	803-3		
+Weiss	803-5		
+Weiss	803-6		
+Wester	905-2		
+Wester	905-1		
+Wester	905-4		
+Wester	905-3		
+Wester	905-6		
+Wester	905-5		
+Wester	905-8		
+Wester	905-7		
+Wiedermann	305-4		
+Wiedermann	305-5		
+Zepharovich	206-1	Fleisch 3x Fisch 1x Vegetarisch 1x	
+Zepharovich	206-3		
+Zepharovich	206-2		
+Zepharovich	206-7		
+Zepharovich	206-8		
+Zepharovich	206-6		
