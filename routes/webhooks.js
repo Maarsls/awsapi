@@ -8,6 +8,8 @@ router.post("/test-tyvent", async (req, res) => {
   /* ---------- Custom Vars ---------- */
   const secretKey = process.env.CLIENT_TESTTYVENT_SHOPIFYTOKEN;
   const ticketid = 6793446785093;
+  const variant_adult = 40221816619077;
+  const variant_youth = 40221816651845;
 
   /* ---------- End Custom Vars ----------*/
   console.log("🎉 We got an order!");
@@ -22,7 +24,6 @@ router.post("/test-tyvent", async (req, res) => {
 
   if (hash === hmac) {
     const order = JSON.parse(body.toString());
-    console.log(order);
 
     /* ---------- Seats.io ---------- */
     // let seatsArray = [];
@@ -40,13 +41,25 @@ router.post("/test-tyvent", async (req, res) => {
     /* ---------- End Seats.io ---------- */
 
     /* ---------- Qr Tickets ---------- */
+    var amount_adult = 0;
+    var amount_youth = 0;
 
     order.line_items.forEach((element) => {
       if (element.product_id === ticketid) {
         // Es ist überprüft worden ob es überhaupt ein Ticket ist
-        console.log(element.title + " " + element.quantity);
+        switch (element.variant_id) {
+          case variant_adult:
+            amount_adult = element.quantity;
+            break;
+          case variant_youth:
+            amount_youth = element.quantity;
+            break;
+        }
       }
     });
+
+    console.log("Jugend" + amount_youth);
+    console.log("Erwachsen" + amount_adult);
 
     /* ---------- End Qr Tickets ---------- */
 
