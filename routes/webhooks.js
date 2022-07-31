@@ -22,7 +22,8 @@ router.post("/test-tyvent", async (req, res) => {
   // Compare our hash to Shopify's hash
   if (hash === hmac) {
     // console.log("job done");
-    // const order = JSON.parse(body.toString());
+    const order = JSON.parse(body.toString());
+    console.log(order);
     // let seatsArray = [];
     // let orderNote = order.note;
     // const noWhitespace = orderNote.replace(/\s/g, "");
