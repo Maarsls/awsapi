@@ -2,7 +2,7 @@ var router = require("express").Router();
 const Blog = require("../model/blog");
 const auth = require("../middleware/auth");
 const crypto = require("crypto");
-const secretKey = process.env.SHOPIFYKEY;
+const secretKey = process.env.CLIENT_TESTTYVENT_SHOPIFYTOKEN;
 const seatsio = require("seatsio");
 const getRawBody = require("raw-body");
 
