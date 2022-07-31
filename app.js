@@ -5,9 +5,9 @@ const express = require("express");
 
 const app = express();
 
-app.use(cors());
+// app.use(cors());
 
-app.use(express.json({ limit: "50mb" }));
+// app.use(express.json({ limit: "50mb" }));
 
 app.use("/entries", require("./routes/entries"));
 app.use("/tickets", require("./routes/tickets"));
