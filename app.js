@@ -20,6 +20,8 @@ app.use("/pdf", require("./routes/pdf"));
 app.use("/qr", require("./routes/qr"));
 app.use("/", require("./routes/main"));
 app.use("/shopify", require("./routes/shopify"));
+app.use("/webhooks", require("./routes/webhooks"));
+
 
 //FÜR EVENTS
 app.use("/shopify/test-tyvent", require("./routes/shopifyR/test-tyvent")); // für jedes event wird eine route angelegt
