@@ -9,15 +9,15 @@ const https = require("https");
 
 // Certificate
 const privateKey = fs.readFileSync(
-  process.cwd() + "/etc/letsencrypt/live/tyvent.at/privkey.pem",
+  process.cwd() + "/etc/letsencrypt/live/api.tyvent.at/privkey.pem",
   "utf8"
 );
 const certificate = fs.readFileSync(
-  process.cwd() + "/etc/letsencrypt/live/tyvent.at/cert.pem",
+  process.cwd() + "/etc/letsencrypt/live/api.tyvent.at/cert.pem",
   "utf8"
 );
 const ca = fs.readFileSync(
-  process.cwd() + "/etc/letsencrypt/live/tyvent.at/chain.pem",
+  process.cwd() + "/etc/letsencrypt/live/api.tyvent.at/chain.pem",
   "utf8"
 );
 
