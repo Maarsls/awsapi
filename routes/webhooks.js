@@ -5,25 +5,26 @@ const seatsio = require("seatsio");
 const getRawBody = require("raw-body");
 
 router.post("/test-tyvent", async (req, res) => {
+  /* ---------- Custom Vars ---------- */
   const secretKey = process.env.CLIENT_TESTTYVENT_SHOPIFYTOKEN;
+  const ticketid = 6793446785093;
+
+  /* ---------- End Custom Vars ----------*/
   console.log("🎉 We got an order!");
 
-  // We'll compare the hmac to our own hash
   const hmac = req.get("X-Shopify-Hmac-Sha256");
-  // Use raw-body to get the body (buffer)
   const body = await getRawBody(req);
 
-  // Create a hash using the body and our key
   const hash = crypto
     .createHmac("sha256", secretKey)
     .update(body, "utf8", "hex")
     .digest("base64");
 
-  // Compare our hash to Shopify's hash
   if (hash === hmac) {
-    // console.log("job done");
     const order = JSON.parse(body.toString());
     console.log(order);
+
+    /* ---------- Seats.io ---------- */
     // let seatsArray = [];
     // let orderNote = order.note;
     // const noWhitespace = orderNote.replace(/\s/g, "");
@@ -36,6 +37,19 @@ router.post("/test-tyvent", async (req, res) => {
     //   process.env.SEATSIOKEY
     // );
     // await client.events.book("agiball2022", seatsArray);
+    /* ---------- End Seats.io ---------- */
+
+    /* ---------- Qr Tickets ---------- */
+
+    order.line_items.forEach((element) => {
+      if (element.id === ticketid) {
+        // Es ist überprüft worden ob es überhaupt ein Ticket ist
+        console.log(element.title + " " + element.quantity);
+      }
+    });
+
+    /* ---------- End Qr Tickets ---------- */
+
     console.log("Phew, it came from Shopify!");
     res.sendStatus(200);
   } else {
