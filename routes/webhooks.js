@@ -42,7 +42,7 @@ router.post("/test-tyvent", async (req, res) => {
     /* ---------- Qr Tickets ---------- */
 
     order.line_items.forEach((element) => {
-      if (element.id === ticketid) {
+      if (element.product_id === ticketid) {
         // Es ist überprüft worden ob es überhaupt ein Ticket ist
         console.log(element.title + " " + element.quantity);
       }
