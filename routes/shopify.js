@@ -19,7 +19,7 @@ router.post("/webhooks/orders/create", async (req, res) => {
     .then((body) => {
       console.log(body);
     })
-    .error((err) => {
+    .catch((err) => {
       console.log(err);
     });
   // console.log(body);
