@@ -1,7 +1,7 @@
 var router = require("express").Router();
 
-router.get("/.well-known/acme-challenge/gxE_yFkq30fc267MVVD_Q3NaMt-Xl2xnR9ZL-oGbncM", (req, res) => {
-  res.send("gxE_yFkq30fc267MVVD_Q3NaMt-Xl2xnR9ZL-oGbncM.aUDOln_wJChD2cyuiTPYy6Ds9ZSRPh81Pi0ZrxeUalw");
+router.get("/.well-known/acme-challenge/YgEqLRNogFKOXhEDTSL_G7t-OFGBFsHmW99j0jys3yY", (req, res) => {
+  res.send("YgEqLRNogFKOXhEDTSL_G7t-OFGBFsHmW99j0jys3yY.aUDOln_wJChD2cyuiTPYy6Ds9ZSRPh81Pi0ZrxeUalw");
 });
 
 router.get("/about", function (req, res) {
