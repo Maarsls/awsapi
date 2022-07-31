@@ -16,15 +16,7 @@ router.post("/webhooks/orders/create", async (req, res) => {
   console.log("rasw");
   console.log(res);
   // Use raw-body to get the body (buffer)
-  let body = null;
-  getRawBody(req)
-    .then((bd) => {
-      console.log(bd);
-      body = bd;
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  const body = await getRawBody(req)
   // console.log(body);
 
   // Create a hash using the body and our key
