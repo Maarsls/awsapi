@@ -15,8 +15,14 @@ router.post("/webhooks/orders/create", async (req, res) => {
   const hmac = req.get("X-Shopify-Hmac-Sha256");
   console.log("rasw");
   // Use raw-body to get the body (buffer)
-  const body = await getRawBody(req);
-  console.log(body);
+  getRawBody(req)
+    .then((body) => {
+      console.log(body);
+    })
+    .error((err) => {
+      console.log(err);
+    });
+  // console.log(body);
 
   // Create a hash using the body and our key
   const hash = crypto
