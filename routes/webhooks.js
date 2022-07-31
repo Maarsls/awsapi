@@ -1,12 +1,22 @@
 var router = require("express").Router();
 const crypto = require("crypto");
+const uuid4 = require("uuid");
+
+const Tickets = require("../model/tickets");
+const Reports = require("../model/reports");
+
 
 const seatsio = require("seatsio");
 const getRawBody = require("raw-body");
 
 router.post("/test-tyvent", async (req, res) => {
   /* ---------- Custom Vars ---------- */
-  const secretKey = process.env.CLIENT_TESTTYVENT_SHOPIFYTOKEN;
+  const event = "test-tyvent"
+  const secretKey = process.env.CLIENT_FTESTTYVENT_SHOPIFYTOKEN;
+  const menuid = 6793622421573;
+  const variant_meat = 40225790820421;
+  const variant_fish = 40225790853189;
+  const variant_veggy = 40225790885957;
   const ticketid = 6793446785093;
   const variant_adult = 40221816619077;
   const variant_youth = 40221816651845;
@@ -25,25 +35,78 @@ router.post("/test-tyvent", async (req, res) => {
   if (hash === hmac) {
     const order = JSON.parse(body.toString());
 
+    /* ---------- Menu Section ---------- */
+    var amount_meat = 0;
+    var amount_fish = 0;
+    var amount_veggy = 0;
+
+    order.line_items.forEach((element) => {
+      if (element.product_id === menuid) {
+        // Es ist überprüft worden ob es überhaupt ein Ticket ist
+        switch (element.variant_id) {
+          case variant_meat:
+            amount_meat = element.quantity;
+            break;
+          case variant_fish:
+            amount_fish = element.quantity;
+            break;
+          case variant_veggy:
+            amount_veggy = element.quantity;
+            break;
+        }
+      }
+    });
+
+    Reports.findOne({ type: "Menu-Meat" })
+      .exec()
+      .then(function (report) {
+        await Reports.create({ type: "Menu-Meat", value: report.value + amount_meat });
+      });
+
+
+    /* ---------- End Menu Section ---------- */
+
     /* ---------- Seats.io ---------- */
-    // let seatsArray = [];
-    // let orderNote = order.note;
-    // const noWhitespace = orderNote.replace(/\s/g, "");
-    // seatsArray = noWhitespace.split(",");
-    // seatsArray.pop();
-    // console.log(seatsArray);
-    // It's a match! All good
-    // let client = new seatsio.SeatsioClient(
-    //   seatsio.Region.EU(),
-    //   process.env.SEATSIOKEY
-    // );
-    // await client.events.book("agiball2022", seatsArray);
+    if (order.note) {
+      let seatsArray = [];
+      let orderNote = order.note;
+      const noWhitespace = orderNote.replace(/\s/g, "");
+      seatsArray = noWhitespace.split(",");
+      let holdToken = seatsArray.pop();
+      let orderObject = [];
+      seatsArray.forEach((seat) => {
+        if (amount_meat > 0) {
+          orderObject.push({ objectId: seat, extraData: { order_id: order.id, name: order.customer.last_name + " " + order.customer.first_name, menu: "FLEISCH" } });
+          amount_meat--;
+        } else if (amount_fish > 0) {
+          orderObject.push({ objectId: seat, extraData: { order_id: order.id, name: order.customer.last_name + " " + order.customer.first_name, menu: "FISCH" } });
+          amount_fish--;
+        } else if (amount_veggy > 0) {
+          orderObject.push({ objectId: seat, extraData: { order_id: order.id, name: order.customer.last_name + " " + order.customer.first_name, menu: "VEGGY" } });
+          amount_veggy--;
+        } else {
+          orderObject.push({ objectId: seat, extraData: { order_id: order.id, name: order.customer.last_name + " " + order.customer.first_name } });
+        }
+      });
+      let client = new seatsio.SeatsioClient(
+        seatsio.Region.EU(),
+        process.env.SEATSIOKEY
+      );
+      try {
+        await client.events.book(event, orderObject, holdToken);
+      } catch (error) {
+
+      }
+    }
     /* ---------- End Seats.io ---------- */
 
     /* ---------- Qr Tickets ---------- */
     var amount_adult = 0;
+    var array_adult = [];
     var amount_youth = 0;
+    var array_youth = [];
 
+    /* ----- 1) Ermittlung wie viele Tickets gekauft wurden ----- */
     order.line_items.forEach((element) => {
       if (element.product_id === ticketid) {
         // Es ist überprüft worden ob es überhaupt ein Ticket ist
@@ -58,12 +121,47 @@ router.post("/test-tyvent", async (req, res) => {
       }
     });
 
+    /* ----- 2) Erstellen von Arrays mit uid etc. ----- */
+    for (let index = 0; index < amount_adult; index++) {
+      array_adult.push({
+        uuid: uuid4(),
+        status: "BOUGHT",
+        type: "ADULT",
+        customer: order.customer.id,
+        issuer: "APIWEBHOOK",
+        event: event,
+      });
+    }
+    for (let index = 0; index < amount_youth; index++) {
+      array_youth.push({
+        uuid: uuid4(),
+        status: "BOUGHT",
+        type: "YOUTH",
+        customer: order.customer.id,
+        issuer: "APIWEBHOOK",
+        event: event,
+      });
+    }
+
+    /* ----- 3) Qr-Code Tickets erstellen und im Buffer speichern ----- */
+
+    /* ----- 4) Qr-Codes per AWS SES versenden ----- */
+
+    /* ----- 5) Tickets mit auf Qr-Code gespeicherten uids in die Datenbank speichern ----- */
+    array_adult.forEach(element => {
+      await Tickets.create(element);
+    });
+    array_youth.forEach(element => {
+      await Tickets.create(element);
+    });
+
     console.log("Jugend" + amount_youth);
     console.log("Erwachsen" + amount_adult);
 
     /* ---------- End Qr Tickets ---------- */
 
-    console.log("Phew, it came from Shopify!");
+
+
     res.sendStatus(200);
   } else {
     // No match! This request didn't originate from Shopify

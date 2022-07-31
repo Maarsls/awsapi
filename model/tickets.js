@@ -8,6 +8,7 @@ const ticketsSchema = new mongoose.Schema({
   type: { type: String },
   customer: { type: String },
   issuer: { type: String },
+  event: { type: String },
 });
 
 module.exports = mongoose.model("tickets", ticketsSchema);
