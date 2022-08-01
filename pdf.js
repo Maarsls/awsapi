@@ -22,6 +22,7 @@ module.exports = {
         }
 
         const browser = await puppeteer.launch({
+            executablePath: '/usr/bin/google-chrome-stable',
             args: ['--no-sandbox'],
             headless: true
         });
