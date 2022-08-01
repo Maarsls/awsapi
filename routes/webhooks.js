@@ -148,8 +148,8 @@ router.post("/test-tyvent", async (req, res) => {
     var adult = new Promise((resolve, reject) => {
       array_adult.forEach(async (element) => { const pdf_ticket = await pdf.createPdfInBuffer(); attachments.push({ filename: event + 'Ticket-Erwachsen - ' + element.uuid + '.pdf', content: pdf_ticket }); console.log("erstellt-erwachsen"); if (index === array.length - 1) resolve(); })
     });
-    adult.then(() => {
-      var youth = new Promise((resolve, reject) => { array_youth.forEach(async (element, index) => { const pdf_ticket = await pdf.createPdfInBuffer(); attachments.push({ filename: event + 'Ticket-Jugend - ' + element.uuid + '.pdf', content: pdf_ticket }); console.log("erstellt-jugend"); if (index === array.length - 1) resolve(); }) }); youth.then(() => {
+    adult.then(async () => {
+      var youth = new Promise((resolve, reject) => { array_youth.forEach(async (element, index) => { const pdf_ticket = await pdf.createPdfInBuffer(); attachments.push({ filename: event + 'Ticket-Jugend - ' + element.uuid + '.pdf', content: pdf_ticket }); console.log("erstellt-jugend"); if (index === array.length - 1) resolve(); }) }); youth.then(async () => {
         console.log(attachments)
         /* ----- 4) Qr-Codes per AWS SES versenden ----- */
         console.log(await mail.sendTicketsQr(order.email, event, attachments))
