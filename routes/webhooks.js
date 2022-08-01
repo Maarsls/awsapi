@@ -57,11 +57,11 @@ router.post("/test-tyvent", async (req, res) => {
       }
     });
 
-    // Reports.findOne({ type: "Menu-Meat" })
-    //   .exec()
-    //   .then(function (report) {
-    //     await Reports.create({ type: "Menu-Meat", value: report.value + amount_meat });
-    //   });
+    Reports.findOne({ type: "Menu-Meat" })
+      .exec()
+      .then(async function (report) {
+        await Reports.create({ type: "Menu-Meat", value: report.value + amount_meat });
+      });
 
 
     /* ---------- End Menu Section ---------- */
