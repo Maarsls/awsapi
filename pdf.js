@@ -4,7 +4,7 @@ const puppeteer = require('puppeteer');
 const handlebars = require("handlebars");
 
 module.exports = {
-    createPdfInBuffer: async () => {
+    createPdfInBuffer: async (event, type, uuid, payment) => {
         var options = {
             width: "794px",
             height: "1123px",
@@ -28,7 +28,7 @@ module.exports = {
         });
 
         var page = await browser.newPage();
-        await page.goto(`https://api.tyvent.at/pdf/tyvent-ticket`, { //TODO: Change url to effective route
+        await page.goto(`https://api.tyvent.at/pdf/tyvent-ticket?event=${event}&type=${type}&uuid=${uuid}&payment=${payment}`, { //TODO: Change url to effective route
             waitUntil: 'networkidle0'
         });
 

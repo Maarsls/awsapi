@@ -44,13 +44,14 @@
           align-items: center;
         "
       >
+      
         <img
           src="/matura-logo.png"
           style="width: 150px; margin-bottom: 30px; margin-top: 20px;"
           class="img-fluid"
         />
-        <h1>Maturaball Brg im Hintertuxertal</h3>
-        <h2 style="margin-top: 20px">Eintrittskarte - Erwachsen</h2>
+        <h1><%=data.event %></h3>
+        <h2 style="margin-top: 20px">Eintrittskarte - <%= data.type %></h2>
       </div>
       <div
         style="
@@ -73,9 +74,10 @@
             border-radius: 20px;
           "
         >
-          <img src="/qrexample.png" />
+        <img src="https://api.qrserver.com/v1/create-qr-code/?data=<%= data.uuid %>&amp;size=225x225" />
+          <!-- <img src="/qrexample.png" /> -->
           
-          <b style="margin-top: 10px;">#123456</b>
+          <b style="margin-top: 10px;">#<%=data.uuid %></b>
         </div>
       </div>
       <div
@@ -112,7 +114,7 @@ justify-content: flex-end;
           welche mit dem Kauf dieses Tickets akzeptiert wurden.
         </p>
         <br />
-        <b style="font-size: small">Bezahlt mit Paypal</b>
+        <b style="font-size: small">Bezahlt mit <%= data.payment %></b>
         <img
         src="/tyvent-logo.png"
         class="img-fluid"

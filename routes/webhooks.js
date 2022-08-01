@@ -171,7 +171,7 @@ router.post("/test-tyvent", async (req, res) => {
       var attachments = []
       var adult = await new Promise((resolve, reject) => {
         array_adult.forEach(async (element, index) => {
-          const pdf_ticket = await pdf.createPdfInBuffer();
+          const pdf_ticket = await pdf.createPdfInBuffer(event, "Erwachsen", element.uuid, order.payment_gateway_names[0]);
           attachments.push({ filename: event + 'Ticket-Erwachsen - ' + element.uuid + '.pdf', content: pdf_ticket });
           console.log("erstellt-erwachsen");
           if (index === array_adult.length - 1) resolve();
@@ -179,7 +179,7 @@ router.post("/test-tyvent", async (req, res) => {
       });
       var youth = await new Promise((resolve, reject) => {
         array_youth.forEach(async (element, index) => {
-          const pdf_ticket = await pdf.createPdfInBuffer();
+          const pdf_ticket = await pdf.createPdfInBuffer(event, "Jugend", element.uuid, order.payment_gateway_names[0]);
           attachments.push({ filename: event + 'Ticket-Jugend - ' + element.uuid + '.pdf', content: pdf_ticket });
           console.log("erstellt-jugend");
           if (index === array_youth.length - 1) resolve();
