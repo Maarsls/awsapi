@@ -43,11 +43,9 @@ router.post("/test-tyvent", async (req, res) => {
 
     order.line_items.forEach((element) => {
       if (element.product_id === menuid) {
-        console.log("ismenu")
         // Es ist überprüft worden ob es überhaupt ein Ticket ist
         switch (element.variant_id) {
           case variant_meat:
-            console.log("isfleisch" + element.quantity);
             amount_meat = element.quantity;
             break;
           case variant_fish:
@@ -64,7 +62,6 @@ router.post("/test-tyvent", async (req, res) => {
       Reports.findOne({ type: "Menu-Meat", event: event })
         .exec()
         .then(async function (report) {
-          console.log(report.value + " " + amount_meat + " " + (report.value + amount_meat))
           await Reports.updateOne({ type: 'Menu-Meat', event: event }, {
             value: Number(report.value) + Number(amount_meat)
           });
