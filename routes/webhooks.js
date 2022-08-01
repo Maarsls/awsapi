@@ -63,7 +63,7 @@ router.post("/test-tyvent", async (req, res) => {
         .exec()
         .then(async function (report) {
           await Reports.updateOne({ type: 'Menu-Meat', event: event }, {
-            value: report.value + amount_meat
+            value: Number(report.value) + Number(amount_meat)
           });
         });
 
@@ -72,7 +72,7 @@ router.post("/test-tyvent", async (req, res) => {
         .exec()
         .then(async function (report) {
           await Reports.updateOne({ type: 'Menu-Fish', event: event }, {
-            value: report.value + amount_fish
+            value: Number(report.value) + Number(amount_fish)
           });
         });
 
@@ -81,7 +81,7 @@ router.post("/test-tyvent", async (req, res) => {
         .exec()
         .then(async function (report) {
           await Reports.updateOne({ type: 'Menu-Veggy', event: event }, {
-            value: report.value + amount_veggy
+            value: Number(report.value) + Number(amount_veggy)
           });
         });
 
