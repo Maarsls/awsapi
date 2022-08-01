@@ -1,7 +1,5 @@
 var router = require("express").Router();
 const crypto = require("crypto");
-const uuid4 = require("uuid");
-
 
 const Tickets = require("../model/tickets");
 const Reports = require("../model/reports");
@@ -42,28 +40,28 @@ router.post("/test-tyvent", async (req, res) => {
     var amount_fish = 0;
     var amount_veggy = 0;
 
-    // order.line_items.forEach((element) => {
-    //   if (element.product_id === menuid) {
-    //     // Es ist überprüft worden ob es überhaupt ein Ticket ist
-    //     switch (element.variant_id) {
-    //       case variant_meat:
-    //         amount_meat = element.quantity;
-    //         break;
-    //       case variant_fish:
-    //         amount_fish = element.quantity;
-    //         break;
-    //       case variant_veggy:
-    //         amount_veggy = element.quantity;
-    //         break;
-    //     }
-    //   }
-    // });
+    order.line_items.forEach((element) => {
+      if (element.product_id === menuid) {
+        // Es ist überprüft worden ob es überhaupt ein Ticket ist
+        switch (element.variant_id) {
+          case variant_meat:
+            amount_meat = element.quantity;
+            break;
+          case variant_fish:
+            amount_fish = element.quantity;
+            break;
+          case variant_veggy:
+            amount_veggy = element.quantity;
+            break;
+        }
+      }
+    });
 
-    // Reports.findOne({ type: "Menu-Meat" })
-    //   .exec()
-    //   .then(function (report) {
-    //     await Reports.create({ type: "Menu-Meat", value: report.value + amount_meat });
-    //   });
+    Reports.findOne({ type: "Menu-Meat" })
+      .exec()
+      .then(function (report) {
+        await Reports.create({ type: "Menu-Meat", value: report.value + amount_meat });
+      });
 
 
     /* ---------- End Menu Section ---------- */
@@ -126,7 +124,7 @@ router.post("/test-tyvent", async (req, res) => {
     /* ----- 2) Erstellen von Arrays mit uid etc. ----- */
     for (let index = 0; index < amount_adult; index++) {
       array_adult.push({
-        uuid: uuid4.uuid4(),
+        uuid: crypto.randomUUID(),
         status: "BOUGHT",
         type: "ADULT",
         customer: order.customer.id,
@@ -136,7 +134,7 @@ router.post("/test-tyvent", async (req, res) => {
     }
     for (let index = 0; index < amount_youth; index++) {
       array_youth.push({
-        uuid: uuid4.uuid4(),
+        uuid: crypto.randomUUID(),
         status: "BOUGHT",
         type: "YOUTH",
         customer: order.customer.id,
