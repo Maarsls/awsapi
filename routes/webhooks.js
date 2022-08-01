@@ -57,10 +57,12 @@ router.post("/test-tyvent", async (req, res) => {
       }
     });
 
-    Reports.findOne({ type: "Menu-Meat" })
+    Reports.findOne({ type: "Menu-Meat", event: event })
       .exec()
       .then(async function (report) {
-        await Reports.create({ type: "Menu-Meat", value: report.value + amount_meat });
+        await Reports.updateOne({ type: 'Menu-Meat', event: event }, {
+          value: report.value + amount_meat
+        });
       });
 
 
