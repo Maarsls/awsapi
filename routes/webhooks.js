@@ -10,6 +10,7 @@ const seatsio = require("seatsio");
 const getRawBody = require("raw-body");
 
 router.post("/test-tyvent", async (req, res) => {
+  res.sendStatus(200);
   /* ---------- Custom Vars ---------- */
   const event = "test-tyvent"
   const secretKey = process.env.CLIENT_TESTTYVENT_SHOPIFYTOKEN;
@@ -122,67 +123,67 @@ router.post("/test-tyvent", async (req, res) => {
         }
       }
     });
+    if (amount_adult > 0 || amount_youth > 0) {
+      /* ----- 2) Erstellen von Arrays mit uid etc. ----- */
+      for (let index = 0; index < amount_adult; index++) {
+        array_adult.push({
+          uuid: crypto.randomUUID(),
+          status: "BOUGHT",
+          type: "ADULT",
+          customer: order.customer.id,
+          issuer: "APIWEBHOOK",
+          event: event,
+        });
+      }
+      for (let index = 0; index < amount_youth; index++) {
+        array_youth.push({
+          uuid: crypto.randomUUID(),
+          status: "BOUGHT",
+          type: "YOUTH",
+          customer: order.customer.id,
+          issuer: "APIWEBHOOK",
+          event: event,
+        });
+      }
 
-    /* ----- 2) Erstellen von Arrays mit uid etc. ----- */
-    for (let index = 0; index < amount_adult; index++) {
-      array_adult.push({
-        uuid: crypto.randomUUID(),
-        status: "BOUGHT",
-        type: "ADULT",
-        customer: order.customer.id,
-        issuer: "APIWEBHOOK",
-        event: event,
+      /* ----- 3) Qr-Code Tickets erstellen und im Buffer speichern ----- */
+      var attachments = []
+      var adult = await new Promise((resolve, reject) => {
+        array_adult.forEach(async (element, index) => {
+          const pdf_ticket = await pdf.createPdfInBuffer();
+          attachments.push({ filename: event + 'Ticket-Erwachsen - ' + element.uuid + '.pdf', content: pdf_ticket });
+          console.log("erstellt-erwachsen");
+          if (index === array_adult.length - 1) resolve();
+        })
       });
-    }
-    for (let index = 0; index < amount_youth; index++) {
-      array_youth.push({
-        uuid: crypto.randomUUID(),
-        status: "BOUGHT",
-        type: "YOUTH",
-        customer: order.customer.id,
-        issuer: "APIWEBHOOK",
-        event: event,
+      var youth = await new Promise((resolve, reject) => {
+        array_youth.forEach(async (element, index) => {
+          const pdf_ticket = await pdf.createPdfInBuffer();
+          attachments.push({ filename: event + 'Ticket-Jugend - ' + element.uuid + '.pdf', content: pdf_ticket });
+          console.log("erstellt-jugend");
+          if (index === array_youth.length - 1) resolve();
+        })
       });
+
+      console.log(attachments)
+      /* ----- 4) Qr-Codes per AWS SES versenden ----- */
+      console.log(await mail.sendTicketsQr(order.email, event, attachments))
+      /* ----- 5) Tickets mit auf Qr-Code gespeicherten uids in die Datenbank speichern ----- */
+      array_adult.forEach(async (element) => {
+        await Tickets.create(element);
+      });
+      array_youth.forEach(async (element) => {
+        await Tickets.create(element);
+      });
+
+      console.log("Jugend" + amount_youth);
+      console.log("Erwachsen" + amount_adult);
     }
-
-    /* ----- 3) Qr-Code Tickets erstellen und im Buffer speichern ----- */
-    var attachments = []
-    var adult = await new Promise((resolve, reject) => {
-      array_adult.forEach(async (element, index) => {
-        const pdf_ticket = await pdf.createPdfInBuffer();
-        attachments.push({ filename: event + 'Ticket-Erwachsen - ' + element.uuid + '.pdf', content: pdf_ticket });
-        console.log("erstellt-erwachsen");
-        if (index === array_adult.length - 1) resolve();
-      })
-    });
-    var youth = await new Promise((resolve, reject) => {
-      array_youth.forEach(async (element, index) => {
-        const pdf_ticket = await pdf.createPdfInBuffer();
-        attachments.push({ filename: event + 'Ticket-Jugend - ' + element.uuid + '.pdf', content: pdf_ticket });
-        console.log("erstellt-jugend");
-        if (index === array_youth.length - 1) resolve();
-      })
-    });
-
-    console.log(attachments)
-    /* ----- 4) Qr-Codes per AWS SES versenden ----- */
-    console.log(await mail.sendTicketsQr(order.email, event, attachments))
-    /* ----- 5) Tickets mit auf Qr-Code gespeicherten uids in die Datenbank speichern ----- */
-    array_adult.forEach(async (element) => {
-      await Tickets.create(element);
-    });
-    array_youth.forEach(async (element) => {
-      await Tickets.create(element);
-    });
-
-    console.log("Jugend" + amount_youth);
-    console.log("Erwachsen" + amount_adult);
 
     /* ---------- End Qr Tickets ---------- */
 
 
 
-    res.sendStatus(200);
   } else {
     // No match! This request didn't originate from Shopify
     console.log("Danger! Not from Shopify!");
