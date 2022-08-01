@@ -47,6 +47,7 @@ router.post("/test-tyvent", async (req, res) => {
         // Es ist überprüft worden ob es überhaupt ein Ticket ist
         switch (element.variant_id) {
           case variant_meat:
+            console.log("isfleisch" + element.quantity);
             amount_meat = element.quantity;
             break;
           case variant_fish:
