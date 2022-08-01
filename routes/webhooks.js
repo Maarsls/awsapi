@@ -117,7 +117,9 @@ router.post("/test-tyvent", async (req, res) => {
       try {
         await client.events.book(event, orderObject, holdToken);
       } catch (error) {
-        console.log("ihabanerror")
+        console.log("ihabanerror") //TODO: Error handeln
+        console.log(error)
+
       }
     }
     /* ---------- End Seats.io ---------- */
@@ -202,6 +204,7 @@ router.post("/test-tyvent", async (req, res) => {
     /* ---------- End Qr Tickets ---------- */
 
 
+    console.log("🎉 We fulfilled an order!");
 
   } else {
     // No match! This request didn't originate from Shopify
