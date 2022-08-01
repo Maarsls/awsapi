@@ -145,9 +145,9 @@ router.post("/test-tyvent", async (req, res) => {
 
     /* ----- 3) Qr-Code Tickets erstellen und im Buffer speichern ----- */
     var attachments = []
-    array_adult.forEach(async (element) => { const pdf_ticket = await pdf.createPdfInBuffer(); attachments.push({ filename: event + 'Ticket-Erwachsen - ' + element.uuid + '.pdf', content: pdf_ticket }) })
-    array_youth.forEach(async (element) => { const pdf_ticket = await pdf.createPdfInBuffer(); attachments.push({ filename: event + 'Ticket-Jugend - ' + element.uuid + '.pdf', content: pdf_ticket }) })
-
+    array_adult.forEach(async (element) => { const pdf_ticket = await pdf.createPdfInBuffer(); attachments.push({ filename: event + 'Ticket-Erwachsen - ' + element.uuid + '.pdf', content: pdf_ticket }); console.log("erstellt-erwachsen") })
+    array_youth.forEach(async (element) => { const pdf_ticket = await pdf.createPdfInBuffer(); attachments.push({ filename: event + 'Ticket-Jugend - ' + element.uuid + '.pdf', content: pdf_ticket }); console.log("erstellt-jugend") })
+    console.log(attachments)
     /* ----- 4) Qr-Codes per AWS SES versenden ----- */
     console.log(await mail.sendTicketsQr(order.email, event, attachments))
     /* ----- 5) Tickets mit auf Qr-Code gespeicherten uids in die Datenbank speichern ----- */
