@@ -43,6 +43,7 @@ router.post("/test-tyvent", async (req, res) => {
 
     order.line_items.forEach((element) => {
       if (element.product_id === menuid) {
+        console.log("ismenu")
         // Es ist überprüft worden ob es überhaupt ein Ticket ist
         switch (element.variant_id) {
           case variant_meat:
