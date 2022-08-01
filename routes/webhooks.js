@@ -2,10 +2,12 @@ var router = require("express").Router();
 const crypto = require("crypto");
 const uuid4 = require("uuid");
 
+
 const Tickets = require("../model/tickets");
 const Reports = require("../model/reports");
 
-
+const pdf = require("../pdf")
+const mail = require("../mail")
 const seatsio = require("seatsio");
 const getRawBody = require("raw-body");
 
@@ -40,28 +42,28 @@ router.post("/test-tyvent", async (req, res) => {
     var amount_fish = 0;
     var amount_veggy = 0;
 
-    order.line_items.forEach((element) => {
-      if (element.product_id === menuid) {
-        // Es ist überprüft worden ob es überhaupt ein Ticket ist
-        switch (element.variant_id) {
-          case variant_meat:
-            amount_meat = element.quantity;
-            break;
-          case variant_fish:
-            amount_fish = element.quantity;
-            break;
-          case variant_veggy:
-            amount_veggy = element.quantity;
-            break;
-        }
-      }
-    });
+    // order.line_items.forEach((element) => {
+    //   if (element.product_id === menuid) {
+    //     // Es ist überprüft worden ob es überhaupt ein Ticket ist
+    //     switch (element.variant_id) {
+    //       case variant_meat:
+    //         amount_meat = element.quantity;
+    //         break;
+    //       case variant_fish:
+    //         amount_fish = element.quantity;
+    //         break;
+    //       case variant_veggy:
+    //         amount_veggy = element.quantity;
+    //         break;
+    //     }
+    //   }
+    // });
 
-    Reports.findOne({ type: "Menu-Meat" })
-      .exec()
-      .then(function (report) {
-        await Reports.create({ type: "Menu-Meat", value: report.value + amount_meat });
-      });
+    // Reports.findOne({ type: "Menu-Meat" })
+    //   .exec()
+    //   .then(function (report) {
+    //     await Reports.create({ type: "Menu-Meat", value: report.value + amount_meat });
+    //   });
 
 
     /* ---------- End Menu Section ---------- */
@@ -144,16 +146,19 @@ router.post("/test-tyvent", async (req, res) => {
     }
 
     /* ----- 3) Qr-Code Tickets erstellen und im Buffer speichern ----- */
+    var attachments = []
+    array_adult.forEach(async (element) => { const pdf_ticket = await pdf.createPdfInBuffer(); attachments.push({ filename: event + 'Ticket-Erwachsen - ' + element.uuid + '.pdf', content: pdf_ticket }) })
+    array_youth.forEach(async (element) => { const pdf_ticket = await pdf.createPdfInBuffer(); attachments.push({ filename: event + 'Ticket-Jugend - ' + element.uuid + '.pdf', content: pdf_ticket }) })
 
     /* ----- 4) Qr-Codes per AWS SES versenden ----- */
-
+    mail.sendTicketsQr(order.email, event, attachments)
     /* ----- 5) Tickets mit auf Qr-Code gespeicherten uids in die Datenbank speichern ----- */
-    array_adult.forEach(element => {
-      await Tickets.create(element);
-    });
-    array_youth.forEach(element => {
-      await Tickets.create(element);
-    });
+    // array_adult.forEach(element => {
+    //   await Tickets.create(element);
+    // });
+    // array_youth.forEach(element => {
+    //   await Tickets.create(element);
+    // });
 
     console.log("Jugend" + amount_youth);
     console.log("Erwachsen" + amount_adult);

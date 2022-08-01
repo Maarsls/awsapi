@@ -27,6 +27,8 @@ router.get("/byUser/:nuuid", auth, async (req, res) => {
     });
 });
 
+
+
 router.get("/about", function (req, res) {
   res.send("About Page");
 });
