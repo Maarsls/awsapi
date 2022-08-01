@@ -145,26 +145,24 @@ router.post("/test-tyvent", async (req, res) => {
 
     /* ----- 3) Qr-Code Tickets erstellen und im Buffer speichern ----- */
     var attachments = []
-    var adult = new Promise((resolve, reject) => {
-      array_adult.forEach(async (element) => { const pdf_ticket = await pdf.createPdfInBuffer(); attachments.push({ filename: event + 'Ticket-Erwachsen - ' + element.uuid + '.pdf', content: pdf_ticket }); console.log("erstellt-erwachsen"); if (index === array.length - 1) resolve(); })
+    var adult = await new Promise((resolve, reject) => {
+      array_adult.forEach(async (element, index) => { const pdf_ticket = await pdf.createPdfInBuffer(); attachments.push({ filename: event + 'Ticket-Erwachsen - ' + element.uuid + '.pdf', content: pdf_ticket }); console.log("erstellt-erwachsen"); if (index === array.length - 1) resolve(); })
     });
-    adult.then(async () => {
-      var youth = new Promise((resolve, reject) => { array_youth.forEach(async (element, index) => { const pdf_ticket = await pdf.createPdfInBuffer(); attachments.push({ filename: event + 'Ticket-Jugend - ' + element.uuid + '.pdf', content: pdf_ticket }); console.log("erstellt-jugend"); if (index === array.length - 1) resolve(); }) }); youth.then(async () => {
-        console.log(attachments)
-        /* ----- 4) Qr-Codes per AWS SES versenden ----- */
-        console.log(await mail.sendTicketsQr(order.email, event, attachments))
-        /* ----- 5) Tickets mit auf Qr-Code gespeicherten uids in die Datenbank speichern ----- */
-        // array_adult.forEach(element => {
-        //   await Tickets.create(element);
-        // });
-        // array_youth.forEach(element => {
-        //   await Tickets.create(element);
-        // });
+    var youth = await new Promise((resolve, reject) => { array_youth.forEach(async (element, index) => { const pdf_ticket = await pdf.createPdfInBuffer(); attachments.push({ filename: event + 'Ticket-Jugend - ' + element.uuid + '.pdf', content: pdf_ticket }); console.log("erstellt-jugend"); if (index === array.length - 1) resolve(); }) });
+    
+    console.log(attachments)
+    /* ----- 4) Qr-Codes per AWS SES versenden ----- */
+    console.log(await mail.sendTicketsQr(order.email, event, attachments))
+    /* ----- 5) Tickets mit auf Qr-Code gespeicherten uids in die Datenbank speichern ----- */
+    // array_adult.forEach(element => {
+    //   await Tickets.create(element);
+    // });
+    // array_youth.forEach(element => {
+    //   await Tickets.create(element);
+    // });
 
-        console.log("Jugend" + amount_youth);
-        console.log("Erwachsen" + amount_adult);
-      })
-    })
+    console.log("Jugend" + amount_youth);
+    console.log("Erwachsen" + amount_adult);
 
     /* ---------- End Qr Tickets ---------- */
 
