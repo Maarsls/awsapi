@@ -58,13 +58,32 @@ router.post("/test-tyvent", async (req, res) => {
       }
     });
 
-    Reports.findOne({ type: "Menu-Meat", event: event })
-      .exec()
-      .then(async function (report) {
-        await Reports.updateOne({ type: 'Menu-Meat', event: event }, {
-          value: report.value + amount_meat
+    if (amount_meat)
+      Reports.findOne({ type: "Menu-Meat", event: event })
+        .exec()
+        .then(async function (report) {
+          await Reports.updateOne({ type: 'Menu-Meat', event: event }, {
+            value: report.value + amount_meat
+          });
         });
-      });
+
+    if (amount_fish)
+      Reports.findOne({ type: "Menu-Fish", event: event })
+        .exec()
+        .then(async function (report) {
+          await Reports.updateOne({ type: 'Menu-Fish', event: event }, {
+            value: report.value + amount_fish
+          });
+        });
+
+    if (amount_veggy)
+      Reports.findOne({ type: "Menu-Veggy", event: event })
+        .exec()
+        .then(async function (report) {
+          await Reports.updateOne({ type: 'Menu-Veggy', event: event }, {
+            value: report.value + amount_veggy
+          });
+        });
 
 
     /* ---------- End Menu Section ---------- */
@@ -98,7 +117,7 @@ router.post("/test-tyvent", async (req, res) => {
       try {
         await client.events.book(event, orderObject, holdToken);
       } catch (error) {
-
+        console.log("ihabanerror")
       }
     }
     /* ---------- End Seats.io ---------- */
