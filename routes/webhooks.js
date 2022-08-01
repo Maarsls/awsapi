@@ -126,7 +126,7 @@ router.post("/test-tyvent", async (req, res) => {
     /* ----- 2) Erstellen von Arrays mit uid etc. ----- */
     for (let index = 0; index < amount_adult; index++) {
       array_adult.push({
-        uuid: uuid4(),
+        uuid: uuid4.uuid4(),
         status: "BOUGHT",
         type: "ADULT",
         customer: order.customer.id,
@@ -136,7 +136,7 @@ router.post("/test-tyvent", async (req, res) => {
     }
     for (let index = 0; index < amount_youth; index++) {
       array_youth.push({
-        uuid: uuid4(),
+        uuid: uuid4.uuid4(),
         status: "BOUGHT",
         type: "YOUTH",
         customer: order.customer.id,
