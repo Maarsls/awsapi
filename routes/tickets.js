@@ -7,7 +7,7 @@ router.get("/:uuid", (req, res) => {
   Tickets.findOne({ uuid: req.params.uuid })
     .exec()
     .then(function (ticket) {
-      if (ticket) res.send(ticket);
+      if (ticket) res.send({ success: true, ticket: ticket });
       else res.send({ success: false });
     });
 });
