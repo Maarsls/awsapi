@@ -14,7 +14,7 @@ const getRawBody = require("raw-body");
 router.post("/test-tyvent", async (req, res) => {
   /* ---------- Custom Vars ---------- */
   const event = "test-tyvent"
-  const secretKey = process.env.CLIENT_FTESTTYVENT_SHOPIFYTOKEN;
+  const secretKey = process.env.CLIENT_TESTTYVENT_SHOPIFYTOKEN;
   const menuid = 6793622421573;
   const variant_meat = 40225790820421;
   const variant_fish = 40225790853189;
