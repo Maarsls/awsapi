@@ -62,6 +62,7 @@ router.post("/test-tyvent", async (req, res) => {
       Reports.findOne({ type: "Menu-Meat", event: event })
         .exec()
         .then(async function (report) {
+          console.log(report)
           await Reports.updateOne({ type: 'Menu-Meat', event: event }, {
             value: Number(report.value) + Number(amount_meat)
           });
