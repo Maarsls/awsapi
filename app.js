@@ -22,6 +22,8 @@ app.use("/qr", require("./routes/qr"));
 app.use("/", require("./routes/main"));
 app.use("/shopify", require("./routes/shopify"));
 app.use("/webhooks", require("./routes/webhooks"));
+app.use("/events", require("./routes/events"));
+
 
 
 //FÜR EVENTS
