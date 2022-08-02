@@ -12,10 +12,18 @@ router.get("/:uuid", (req, res) => {
     });
 });
 
-router.post("/", auth, async (req, res) => {
-  const entriesRes = await Tickets.create(req.body.ticket);
+router.post("/", async (req, res) => {
+  if (req.query.token == process.env.AUTHTOKEN) {
 
-  res.send(entriesRes);
+    req.body.ticket.forEach(element => {
+      const entriesRes = await Tickets.create(element);
+      console.log(entriesRes)
+    });
+
+    res.send({ success: true });
+  } else {
+    res.send({ success: false })
+  }
 });
 
 router.post("/updateEntrance", async (req, res) => {
