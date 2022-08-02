@@ -15,7 +15,7 @@ router.get("/:uuid", (req, res) => {
 router.post("/", async (req, res) => {
   if (req.query.token == process.env.AUTHTOKEN) {
 
-    req.body.ticket.forEach(element => {
+    req.body.ticket.forEach(async (element) => {
       const entriesRes = await Tickets.create(element);
       console.log(entriesRes)
     });
