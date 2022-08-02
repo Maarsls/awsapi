@@ -13,6 +13,7 @@ router.get("/:uuid", (req, res) => {
 });
 
 router.post("/", async (req, res) => {
+  console.log("ticketpost")
   if (req.query.token == process.env.AUTHTOKEN) {
 
     req.body.ticket.forEach(async (element) => {
