@@ -18,7 +18,7 @@ router.post("/", auth, async (req, res) => {
   res.send(entriesRes);
 });
 
-router.post("/updateEntrance", auth, async (req, res) => {
+router.post("/updateEntrance", async (req, res) => {
   if (req.query.token == process.env.AUTHTOKEN) {
     const entriesRes = await Tickets.updateOne({ event: req.query.event, uuid: req.query.uuid }, {
       status: 'ENTERED'
