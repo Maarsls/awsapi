@@ -18,6 +18,16 @@ router.post("/", auth, async (req, res) => {
   res.send(entriesRes);
 });
 
+router.post("/updateEntrance", auth, async (req, res) => {
+  if (req.query.token == process.env.AUTHTOKEN) {
+    const entriesRes = await Tickets.updateOne({ event: req.query.event, uuid: req.query.uuid }, {
+      status: 'ENTERED'
+    });
+
+    res.send({ success: true, entries: entriesRes });
+  }
+});
+
 router.get("/byUser/:nuuid", auth, async (req, res) => {
   Tickets.find({ customer: "notgiven" })
     .exec()
@@ -25,12 +35,6 @@ router.get("/byUser/:nuuid", auth, async (req, res) => {
       if (tickets) res.send({ success: true, ticket: tickets });
       else res.send({ success: false });
     });
-});
-
-
-
-router.get("/about", function (req, res) {
-  res.send("About Page");
 });
 
 module.exports = router;
