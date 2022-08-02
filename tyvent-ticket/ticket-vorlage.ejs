@@ -74,7 +74,7 @@
             border-radius: 20px;
           "
         >
-        <img src="https://api.qrserver.com/v1/create-qr-code/?data=ty<%= data.uuid %>&amp;size=225x225" />
+        <img src="https://api.qrserver.com/v1/create-qr-code/?data=ty<%= data.type %><%= data.uuid %>&amp;size=225x225" />
           <!-- <img src="/qrexample.png" /> -->
           
           <b style="margin-top: 10px;">#<%=data.uuid %></b>
