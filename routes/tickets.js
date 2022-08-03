@@ -38,7 +38,7 @@ router.post("/updateEntrance", async (req, res) => {
   }
 });
 
-router.get("/byIssuer/:nuuid", auth, async (req, res) => {
+router.get("/byIssuer/:nuuid", async (req, res) => {
   Tickets.find({ issuer: req.params.nuuid })
     .exec()
     .then(function (tickets) {
