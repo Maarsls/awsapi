@@ -5,12 +5,15 @@ var bodyParser = require('body-parser');
 const auth = require("../middleware/auth");
 
 router.get("/:uuid", (req, res) => {
-  Tickets.findOne({ uuid: req.params.uuid })
-    .exec()
-    .then(function (ticket) {
-      if (ticket) res.send({ success: true, ticket: ticket });
-      else res.send({ success: false });
-    });
+  if (req.query.token == process.env.AUTHTOKEN) {
+
+    Tickets.findOne({ uuid: req.params.uuid })
+      .exec()
+      .then(function (ticket) {
+        if (ticket) res.send({ success: true, ticket: ticket });
+        else res.send({ success: false });
+      });
+  }
 });
 
 router.post("/", bodyParser.json(), async (req, res) => {
