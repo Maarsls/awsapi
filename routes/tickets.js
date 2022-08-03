@@ -6,7 +6,6 @@ const auth = require("../middleware/auth");
 
 router.get("/:uuid", (req, res) => {
   if (req.query.token == process.env.AUTHTOKEN) {
-
     Tickets.findOne({ uuid: req.params.uuid })
       .exec()
       .then(function (ticket) {
@@ -17,9 +16,7 @@ router.get("/:uuid", (req, res) => {
 });
 
 router.post("/", bodyParser.json(), async (req, res) => {
-  console.log("ticketpost")
   if (req.query.token == process.env.AUTHTOKEN) {
-    console.log(req.body)
     req.body.ticket.forEach(async (element) => {
       const entriesRes = await Tickets.create(element);
       console.log(entriesRes)
@@ -41,11 +38,11 @@ router.post("/updateEntrance", async (req, res) => {
   }
 });
 
-router.get("/byUser/:nuuid", auth, async (req, res) => {
-  Tickets.find({ customer: "notgiven" })
+router.get("/byIssuer/:nuuid", auth, async (req, res) => {
+  Tickets.find({ issuer: req.params.nuuid })
     .exec()
     .then(function (tickets) {
-      if (tickets) res.send({ success: true, ticket: tickets });
+      if (tickets) res.send({ success: true, ticket: tickets.length });
       else res.send({ success: false });
     });
 });
