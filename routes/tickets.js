@@ -1,5 +1,6 @@
 var router = require("express").Router();
 const Tickets = require("../model/tickets");
+var bodyParser = require('body-parser');
 
 const auth = require("../middleware/auth");
 
@@ -12,10 +13,10 @@ router.get("/:uuid", (req, res) => {
     });
 });
 
-router.post("/", async (req, res) => {
+router.post("/", bodyParser.json(), async (req, res) => {
   console.log("ticketpost")
   if (req.query.token == process.env.AUTHTOKEN) {
-
+    console.log(req.body)
     req.body.ticket.forEach(async (element) => {
       const entriesRes = await Tickets.create(element);
       console.log(entriesRes)
