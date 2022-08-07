@@ -178,6 +178,8 @@ router.post("/test-tyvent", async (req, res) => {
             console.log(index + " " + array_adult.length)
             if (index === array_adult.length - 1) resolve();
           })
+        else
+          resolve()
       });
       await new Promise((resolve, reject) => {
         if (array_youth > 0)
@@ -187,6 +189,8 @@ router.post("/test-tyvent", async (req, res) => {
             console.log("erstellt-jugend");
             if (index === array_youth.length - 1) resolve();
           })
+        else
+          resolve()
       });
 
       console.log(attachments)
