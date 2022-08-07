@@ -174,6 +174,7 @@ router.post("/test-tyvent", async (req, res) => {
           const pdf_ticket = await pdf.createPdfInBuffer(event, "Erwachsen", element.uuid, order.payment_gateway_names[0]);
           attachments.push({ filename: event + 'Ticket-Erwachsen - ' + element.uuid + '.pdf', content: pdf_ticket });
           console.log("erstellt-erwachsen");
+          console.log(index + " " + array_adult.length)
           if (index === array_adult.length - 1) resolve();
         })
       });
