@@ -170,7 +170,7 @@ router.post("/test-tyvent", async (req, res) => {
       /* ----- 3) Qr-Code Tickets erstellen und im Buffer speichern ----- */
       var attachments = []
       await new Promise((resolve, reject) => {
-        if (array_adult > 0)
+        if (array_adult.length > 0)
           array_adult.forEach(async (element, index) => {
             const pdf_ticket = await pdf.createPdfInBuffer(event, "Erwachsen", element.uuid, order.payment_gateway_names[0]);
             attachments.push({ filename: event + 'Ticket-Erwachsen - ' + element.uuid + '.pdf', content: pdf_ticket });
@@ -182,7 +182,7 @@ router.post("/test-tyvent", async (req, res) => {
           resolve()
       });
       await new Promise((resolve, reject) => {
-        if (array_youth > 0)
+        if (array_youth.length > 0)
           array_youth.forEach(async (element, index) => {
             const pdf_ticket = await pdf.createPdfInBuffer(event, "Jugend", element.uuid, order.payment_gateway_names[0]);
             attachments.push({ filename: event + 'Ticket-Jugend - ' + element.uuid + '.pdf', content: pdf_ticket });
