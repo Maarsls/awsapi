@@ -169,29 +169,29 @@ router.post("/test-tyvent", async (req, res) => {
 
       /* ----- 3) Qr-Code Tickets erstellen und im Buffer speichern ----- */
       var attachments = []
-      var adult = await new Promise((resolve, reject) => {
-        array_adult.forEach(async (element, index) => {
-          const pdf_ticket = await pdf.createPdfInBuffer(event, "Erwachsen", element.uuid, order.payment_gateway_names[0]);
-          attachments.push({ filename: event + 'Ticket-Erwachsen - ' + element.uuid + '.pdf', content: pdf_ticket });
-          console.log("erstellt-erwachsen");
-          console.log(index + " " + array_adult.length)
-          if (index === array_adult.length - 1) resolve();
-        })
-        resolve();
+      await new Promise((resolve, reject) => {
+        if (array_adult > 0)
+          array_adult.forEach(async (element, index) => {
+            const pdf_ticket = await pdf.createPdfInBuffer(event, "Erwachsen", element.uuid, order.payment_gateway_names[0]);
+            attachments.push({ filename: event + 'Ticket-Erwachsen - ' + element.uuid + '.pdf', content: pdf_ticket });
+            console.log("erstellt-erwachsen");
+            console.log(index + " " + array_adult.length)
+            if (index === array_adult.length - 1) resolve();
+          })
       });
-      var youth = await new Promise((resolve, reject) => {
-        array_youth.forEach(async (element, index) => {
-          const pdf_ticket = await pdf.createPdfInBuffer(event, "Jugend", element.uuid, order.payment_gateway_names[0]);
-          attachments.push({ filename: event + 'Ticket-Jugend - ' + element.uuid + '.pdf', content: pdf_ticket });
-          console.log("erstellt-jugend");
-          if (index === array_youth.length - 1) resolve();
-        })
-        resolve();
+      await new Promise((resolve, reject) => {
+        if (array_youth > 0)
+          array_youth.forEach(async (element, index) => {
+            const pdf_ticket = await pdf.createPdfInBuffer(event, "Jugend", element.uuid, order.payment_gateway_names[0]);
+            attachments.push({ filename: event + 'Ticket-Jugend - ' + element.uuid + '.pdf', content: pdf_ticket });
+            console.log("erstellt-jugend");
+            if (index === array_youth.length - 1) resolve();
+          })
       });
 
       console.log(attachments)
       /* ----- 4) Qr-Codes per AWS SES versenden ----- */
-      console.log(await mail.sendTicketsQr(order.email, event, attachments))
+      console.log(await mail.sendTicketsQr(order.email, event, attachments, order.customer.first_name, order.customer.last_name))
       /* ----- 5) Tickets mit auf Qr-Code gespeicherten uids in die Datenbank speichern ----- */
       array_adult.forEach(async (element) => {
         await Tickets.create(element);
