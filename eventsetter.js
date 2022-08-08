@@ -1,4 +1,4 @@
-const Events = require("../model/events");
+const Events = require("./model/events");
 const mycrypto = require("../mycrypto")
 
 async function main() {
