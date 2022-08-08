@@ -2,19 +2,25 @@ var router = require("express").Router();
 const crypto = require("crypto");
 
 const Tickets = require("../model/tickets");
+const Events = require("../model/events");
+
 const Reports = require("../model/reports");
 
 const pdf = require("../pdf")
 const mail = require("../mail")
 const seatsio = require("seatsio");
 const getRawBody = require("raw-body");
-const events = [{ event: "test-tyvent" }, { event: "test" }]
 
-events.forEach(element => {
-  router.get(`/${element.event}`, async (req, res) => { 
-    res.send(`Event: ${element.event}`)
-  })
-});
+
+Events.find()
+    .exec()
+    .then(function (events) {
+      events.forEach(element => {
+        router.get(`/${element.event}`, async (req, res) => { 
+          res.send(`Event: ${element.event}`)
+        })
+      });
+    });
 
 router.post("/test-tyvent", async (req, res) => {
   res.sendStatus(200);
