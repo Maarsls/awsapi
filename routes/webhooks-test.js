@@ -17,7 +17,7 @@ Events.find()
   .exec()
   .then(function (events) {
     events.forEach(element => {
-      router.get(`/${element.event}`, async (req, res) => {
+      router.get(`/${element.event}`, bodyParser.json(),async (req, res) => {
         res.json({ event: element.event, key: mycrypto.decrypt(element.key) })
 
       })
