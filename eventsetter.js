@@ -1,5 +1,5 @@
 const Events = require("./model/events");
-const mycrypto = require("../mycrypto")
+const mycrypto = require("./mycrypto")
 
 async function main() {
     const eventRes = await Events.create(
