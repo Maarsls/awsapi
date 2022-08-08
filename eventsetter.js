@@ -1,5 +1,5 @@
-require("./config/database").connect();
 require("dotenv").config();
+require("./config/database").connect();
 const Events = require("./model/events");
 const mycrypto = require("./mycrypto")
 
