@@ -53,6 +53,7 @@ Events.find()
                 if (element.product_id === menuid) {
                   // Es ist überprüft worden ob es überhaupt ein Ticket ist
                   if (element.variant_id == variants.id) {
+                    console.log("jephatfunktioniert")
                     Reports.findOne({ type: variants.type, event: event })
                       .exec()
                       .then(async function (report) {
