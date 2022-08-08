@@ -1,5 +1,6 @@
 var router = require("express").Router();
 const crypto = require("crypto");
+const mycrypto = require("../mycrypto")
 
 const Tickets = require("../model/tickets");
 const Events = require("../model/events");
@@ -13,14 +14,15 @@ const getRawBody = require("raw-body");
 
 
 Events.find()
-    .exec()
-    .then(function (events) {
-      events.forEach(element => {
-        router.get(`/${element.event}`, async (req, res) => { 
-          res.send(`Event: ${element.event}`)
-        })
-      });
+  .exec()
+  .then(function (events) {
+    events.forEach(element => {
+      router.get(`/${element.event}`, async (req, res) => {
+        res.json({ event: element.event, key: mycrypto.decrypt(element.key) })
+
+      })
     });
+  });
 
 router.post("/test-tyvent", async (req, res) => {
   res.sendStatus(200);

@@ -5,7 +5,7 @@ router.get("/", (req, res) => {
   Events.find()
     .exec()
     .then(function (users) {
-      res.send(users);
+      res.send(users.map((element) => { return {event: element.event} }));
     });
 });
 
