@@ -2,10 +2,11 @@ const Events = require("./model/events");
 const mycrypto = require("./mycrypto")
 
 async function main() {
+    console.log(mycrypto.encrypt("46f29735-c58a-4e29-ac31-c53279c28e80"))
     const eventRes = await Events.create(
         {
             event: "test",
-            key: mycrypto.encrypt("46f29735-c58a-4e29-ac31-c53279c28e80"),
+            key: "adsf",
             tickets: {
                 shopifyId: 123423456,
                 variants: [{
