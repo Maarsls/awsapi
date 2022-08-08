@@ -1,6 +1,8 @@
 var router = require("express").Router();
 const crypto = require("crypto");
 const mycrypto = require("../mycrypto")
+var bodyParser = require('body-parser');
+
 
 const Tickets = require("../model/tickets");
 const Events = require("../model/events");
@@ -17,7 +19,7 @@ Events.find()
   .exec()
   .then(function (events) {
     events.forEach(element => {
-      router.get(`/${element.event}`, bodyParser.json(),async (req, res) => {
+      router.get(`/${element.event}`, bodyParser.json(), async (req, res) => {
         res.json({ event: element.event, key: mycrypto.decrypt(element.key) })
 
       })
