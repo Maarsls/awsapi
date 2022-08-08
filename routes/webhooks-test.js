@@ -20,7 +20,7 @@ Events.find()
   .then(function (events) {
     events.forEach(element => {
       router.get(`/${element.event}`, bodyParser.json(), async (req, res) => {
-        res.send({ event: element.event, key: mycrypto.decrypt(element.key) })
+        res.send({ event: element.event, key: "asdf" })
 
       })
     });
