@@ -20,6 +20,7 @@ Events.find()
   .then(function (events) {
     events.forEach(element => {
       router.post(`/${element.event}`, async (req, res) => {
+        console.log(element)
         res.sendStatus(200);
         /* ---------- Custom Vars ---------- */
         const event = element.event
@@ -52,7 +53,7 @@ Events.find()
             element.menus.variants.forEach((variants) => {
               console.log("gehdurch")
               order.line_items.forEach((element) => {
-                console.log("gehdrein")
+                console.log(`${element.product_id} ${element.variant_id} ${variants.id} ${menuid}`)
                 if (element.product_id === menuid) {
                   console.log("ismenu")
                   // Es ist überprüft worden ob es überhaupt ein Ticket ist
