@@ -19,7 +19,7 @@ Events.find()
   .exec()
   .then(function (events) {
     events.forEach(element => {
-      router.post(`${element.event}`, async (req, res) => {
+      router.post(`/${element.event}`, async (req, res) => {
         res.sendStatus(200);
         /* ---------- Custom Vars ---------- */
         const event = element.event
