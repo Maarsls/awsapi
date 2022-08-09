@@ -4,12 +4,12 @@ const Events = require("./model/events");
 const mycrypto = require("./mycrypto")
 
 async function main() {
-    /*const eventRes = await Events.create(
+    const eventRes = await Events.create(
         {
             event: "test-tyvent",
             key: mycrypto.encrypt("46f29735-c58a-4e29-ac31-c53279c28e80"),
             tickets: {
-                shopifyId: 6793446785093,
+                shopifyid: 6793446785093,
                 variants: [
                     {
                         id: 40221816619077, type: "Erwachsen"
@@ -19,7 +19,7 @@ async function main() {
                 ]
             },
             menus: {
-                shopifyId: 6793622421573,
+                shopifyid: 6793622421573,
                 variants: [
                     {
                         id: 40225790820421, type: "Menu-Meat"
@@ -33,8 +33,8 @@ async function main() {
             }
         })
 
-    console.log(eventRes)*/
-    Events.updateOne({ event: "test-tyvent" }, { key: mycrypto.encrypt("15bd544601a267da2638a070c688bc97cfd86558a762e5701e9415f4dbe417a3") }, function (
+    console.log(eventRes)
+    /*Events.updateOne({ event: "test-tyvent" }, { key: mycrypto.encrypt("qdwf") }, function (
         err,
         result
     ) {
@@ -43,7 +43,7 @@ async function main() {
         } else {
             console.log(result)
         }
-    });
+    });*/
 }
 
 main()
