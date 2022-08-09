@@ -50,8 +50,11 @@ Events.find()
           if (element.menus.variants.length > 0) {
             console.log("menu")
             element.menus.variants.forEach((variants) => {
+              console.log("gehdurch")
               order.line_items.forEach((element) => {
+                console.log("gehdrein")
                 if (element.product_id === menuid) {
+                  console.log("ismenu")
                   // Es ist überprüft worden ob es überhaupt ein Ticket ist
                   if (element.variant_id == variants.id) {
                     console.log("jephatfunktioniert")
