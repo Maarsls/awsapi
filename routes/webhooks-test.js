@@ -23,7 +23,7 @@ Events.find()
         res.sendStatus(200);
         /* ---------- Custom Vars ---------- */
         const event = element.event
-        const secretKey = mycrypto.decrypt(element.key);
+        const secretKey = mycrypto.decrypt(element.key).encryptedData;
         const menuid = element.menus.shopifyid;
         const variant_meat = 40225790820421;
         const variant_fish = 40225790853189;
