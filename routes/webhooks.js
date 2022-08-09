@@ -10,7 +10,6 @@ const seatsio = require("seatsio");
 const getRawBody = require("raw-body");
 
 router.post("/test-tyvent", async (req, res) => {
-  res.sendStatus(200);
   /* ---------- Custom Vars ---------- */
   const event = "test-tyvent"
   const secretKey = process.env.CLIENT_TESTTYVENT_SHOPIFYTOKEN;
@@ -34,6 +33,8 @@ router.post("/test-tyvent", async (req, res) => {
     .digest("base64");
 
   if (hash === hmac) {
+    res.sendStatus(200);
+
     const order = JSON.parse(body.toString());
 
     /* ---------- Menu Section ---------- */

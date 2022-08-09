@@ -48,17 +48,14 @@ Events.find()
           const order = JSON.parse(body.toString());
 
           /* ---------- Menu Section ---------- */
+          var menuarray = []
           if (element.menus.variants.length > 0) {
-            console.log("menu")
-            element.menus.variants.forEach((variants) => {
-              console.log("gehdurch")
+            element.menus.variants.forEach((variants, index) => {
               order.line_items.forEach((element) => {
-                console.log(`${element.product_id} ${element.variant_id} ${variants.id} ${menuid}`)
                 if (element.product_id === menuid) {
-                  console.log("ismenu")
                   // Es ist überprüft worden ob es überhaupt ein Ticket ist
                   if (element.variant_id == variants.id) {
-                    console.log("jephatfunktioniert")
+                    menuarray[index] = { quantity: element.quantity, type: variants.type }
                     Reports.findOne({ type: variants.type, event: event })
                       .exec()
                       .then(async function (report) {
@@ -81,19 +78,33 @@ Events.find()
             seatsArray = noWhitespace.split(",");
             let holdToken = seatsArray.pop();
             let orderObject = [];
+            let menuindex = 0;
+            let menuquantity = 0;
             seatsArray.forEach((seat) => {
-              if (amount_meat > 0) {
-                orderObject.push({ objectId: seat, extraData: { order_id: order.id, name: order.customer.last_name + " " + order.customer.first_name, menu: "FLEISCH" } });
-                amount_meat--;
-              } else if (amount_fish > 0) {
-                orderObject.push({ objectId: seat, extraData: { order_id: order.id, name: order.customer.last_name + " " + order.customer.first_name, menu: "FISCH" } });
-                amount_fish--;
-              } else if (amount_veggy > 0) {
-                orderObject.push({ objectId: seat, extraData: { order_id: order.id, name: order.customer.last_name + " " + order.customer.first_name, menu: "VEGGY" } });
-                amount_veggy--;
-              } else {
+              if (menuindex < menuarray.length) {
+                if (menuquantity < menuarray[menuindex].quantity) {
+                  orderObject.push({ objectId: seat, extraData: { order_id: order.id, name: order.customer.last_name + " " + order.customer.first_name, menu: menuarray[menuindex].type } });
+                  menuquantity++;
+                }
+                if (menuquantity == menuarray[menuindex].quantity) {
+                  menuquantity = 0;
+                  menuindex++;
+                }
+                /*if (amount_meat > 0) {
+                  orderObject.push({ objectId: seat, extraData: { order_id: order.id, name: order.customer.last_name + " " + order.customer.first_name, menu: "FLEISCH" } });
+                  amount_meat--;
+                } else if (amount_fish > 0) {
+                  orderObject.push({ objectId: seat, extraData: { order_id: order.id, name: order.customer.last_name + " " + order.customer.first_name, menu: "FISCH" } });
+                  amount_fish--;
+                } else if (amount_veggy > 0) {
+                  orderObject.push({ objectId: seat, extraData: { order_id: order.id, name: order.customer.last_name + " " + order.customer.first_name, menu: "VEGGY" } });
+                  amount_veggy--;
+                }*/
+              }
+              else {
                 orderObject.push({ objectId: seat, extraData: { order_id: order.id, name: order.customer.last_name + " " + order.customer.first_name } });
               }
+
             });
             let client = new seatsio.SeatsioClient(
               seatsio.Region.EU(),
