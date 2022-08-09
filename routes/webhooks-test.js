@@ -48,6 +48,7 @@ Events.find()
 
           /* ---------- Menu Section ---------- */
           if (element.menus.variants.length > 0) {
+            console.log("menu")
             element.menus.variants.forEach((variants) => {
               order.line_items.forEach((element) => {
                 if (element.product_id === menuid) {
