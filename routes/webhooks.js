@@ -188,6 +188,8 @@ router.post("/test-tyvent", async (req, res) => {
             const pdf_ticket = await pdf.createPdfInBuffer(event, "Jugend", element.uuid, order.payment_gateway_names[0]);
             attachments.push({ filename: event + 'Ticket-Jugend - ' + element.uuid + '.pdf', content: pdf_ticket });
             console.log("erstellt-jugend");
+            console.log(index + " " + array_youth.length)
+
             if (index === array_youth.length - 1) resolve();
           })
         else
